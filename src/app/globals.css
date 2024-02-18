@@ -2,12 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-a{
-    @apply hover:text-primaryYelow
-}
+
 .item-nav{
     @apply py-4 px-8 w-full  shadow-md hover:shadow-lg mb-4 rounded-md cursor-pointer m-1 item-hover
 }
 .item-hover{
     @apply hover:text-primaryYelow cursor-pointer
+}
+
+.button-call{
+    @apply  text-lg p-4 font-semibold rounded-3xl  
 }

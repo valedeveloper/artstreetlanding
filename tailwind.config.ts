@@ -16,7 +16,10 @@ const config: Config = {
 
       colors:{
         primaryYelow:"rgb(250, 205, 49)",
-        primaryBlack:"rgb(22, 22, 22)"
+        primaryBlack:"rgb(22, 22, 22)",
+        primaryGray:"rgb(150, 150, 150)",
+        secondaryYelow:"rgb(143, 115, 20)"
+      
       },
       borderWidth: {
         1:'1px'

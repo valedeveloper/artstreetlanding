@@ -1,7 +1,7 @@
 import React from "react";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 
-function Footer() {
+function Footer():JSX.Element{
   return (
     <footer className="bg-primaryBlack text-white p-14">
       <MaxWidthWrapper>

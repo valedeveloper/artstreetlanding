@@ -1,6 +1,6 @@
 import React from 'react'
 
-function CartPage() {
+function CartPage():JSX.Element {
   return (
     <div>Cart</div>
   )

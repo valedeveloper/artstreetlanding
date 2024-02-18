@@ -2,86 +2,89 @@
 import { useEffect, useState } from "react";
 import { Menu, ShoppingCart, Store, User, X } from "lucide-react";
 import { itemsMenu } from "../utilities/optionsList";
+import { scrollToSection } from "../utilities/scrollToSection";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import Image from "next/image";
 import Link from "next/link";
 
 function NavBar() {
-  const [isVisibleMenu, setIsVisibleMenu] = useState(false);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [isScroll, setIsScroll] = useState(false);
 
-  const handledResize = () => {
-    setIsVisibleMenu(window.innerWidth < 768);
-  };
   const onOpenMenu = () => {
-    {
-      setIsOpenMenu(true);
-    }
+    setIsOpenMenu(true);
   };
   const onCloseMenu = () => {
     setIsOpenMenu(false);
   };
+
   useEffect(() => {
-    window.addEventListener("resize", handledResize);
-    return () => window.removeEventListener("resize", handledResize);
+    const handleScroll = () => {
+      setIsScroll(window.pageYOffset !== 0);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
   return (
-    <MaxWidthWrapper>
-      <header
-        className={"flex justify-around p-2 items-center bg-transparent "}
-      >
-        {isVisibleMenu ? (
-          <Menu onClick={onOpenMenu} className="item-hover " />
-        ) : (
-          <li className="item-hover list-none">¿Qué es Art Street</li>
-        )}
-        <Link href={"/"}>
-          <Image
-            src={"/assets/images/LogoArtStreetTransparente.png"}
-            width={100}
-            height={100}
-            alt="Logo art street"
-          />
-        </Link>
-        {isVisibleMenu ? (
-          <ShoppingCart className="item-hover" />
-        ) : (
-          <ul className="flex gap-5 items-center">
-            {itemsMenu.map((item) => (
-              <Link key={item.name} href={item.href}>
-                <li className="item-hover">{item.item}</li>
-              </Link>
-            ))}
-          </ul>
-        )}
-        {isOpenMenu && isVisibleMenu && (
-          <div className="fixed inset-0 bg-black bg-opacity-95 z-20 flex justify-center items-center transition-opacity duration-500">
-            <ul className="text-white text-center w-screen flex justify-center flex-col items-center text-2xl transition-opacity duration-500">
-              <X
-                className="absolute right-8 top-8 cursor-pointer item-hover"
-                size={30}
-                onClick={onCloseMenu}
+    <div className=" bg-white sticky z-50 top-0 inset-x-0 h-16">
+      <header className={"relative bg-white"}>
+        <MaxWidthWrapper>
+          <div
+            className={
+              "border-b flex items-center justify-between px-5 md:justify-around " +
+              (isScroll ? " bg-white" : " bg-transparent transition-background-color duration-300")
+            }
+          >
+            <Menu onClick={onOpenMenu} className="item-hover md:hidden " />
+            {/* <li onClick={()=>scrollToSection("intro")} className=" hidden md:visible">¿Qué es Art Street</li> */}
+            <Link href={"/"}>
+              <Image
+                src={"/assets/images/LogoArtStreetTransparente.png"}
+                width={100}
+                height={100}
+                alt="Logo art street"
               />
-              <Link href={"/"}>
-                <li className="item-nav ">Inicio</li>
-              </Link>
-              <Link href={"/"}>
-                <li className="item-nav ">¿Qué es Art Street</li>
-              </Link>
-              {itemsMenu
-                .filter((item) => item.href !== "/cart")
-                .map((item) => (
-                  <Link key={item.href} href={item.href}>
-                    <li className="item-nav" onClick={onCloseMenu}>
-                      {item.name}
+            </Link>
+            <ShoppingCart className="item-hover md:hidden" />
+
+            <ul className="md:flex md:gap-5 md:items-center hidden">
+              {itemsMenu.map((item) => (
+                <Link key={item.name} href={item.href}>
+                  <li className="item-hover">{item.item}</li>
+                </Link>
+              ))}
+            </ul>
+            {isOpenMenu && (
+              <div className="fixed inset-0 bg-black bg-opacity-95 z-20 flex justify-center items-center transition-opacity duration-500">
+                <ul className="text-white text-center w-screen flex justify-center flex-col items-center text-2xl transition-opacity duration-500">
+                  <X
+                    className="absolute right-8 top-8 cursor-pointer item-hover"
+                    size={30}
+                    onClick={onCloseMenu}
+                  />
+                  <Link href={"/"}>
+                    <li className="item-nav " onClick={onCloseMenu}>
+                      Inicio
                     </li>
                   </Link>
-                ))}
-            </ul>
+                  {itemsMenu
+                    .filter((item) => item.href !== "/cart")
+                    .map((item) => (
+                      <Link key={item.href} href={item.href}>
+                        <li className="item-nav" onClick={onCloseMenu}>
+                          {item.name}
+                        </li>
+                      </Link>
+                    ))}
+                </ul>
+              </div>
+            )}
           </div>
-        )}
+        </MaxWidthWrapper>
       </header>
-    </MaxWidthWrapper>
+    </div>
   );
 }
 export default NavBar;

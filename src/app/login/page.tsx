@@ -1,6 +1,6 @@
 import React from 'react'
 
-function LginPage() {
+function LginPage():JSX.Element {
   return (
     <div>Login Page</div>
   )

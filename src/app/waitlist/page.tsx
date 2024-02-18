@@ -1,6 +1,6 @@
 import React from 'react'
 
-function WaitPage() {
+function WaitPage():JSX.Element {
   return (
     <div>Wait Page</div>
   )
