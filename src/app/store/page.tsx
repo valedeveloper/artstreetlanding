@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Page() {
+function StorePage() {
   return (
     <div>Sotre</div>
   )
 }
 
-export default Page
+export default StorePage
