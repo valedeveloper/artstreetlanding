@@ -1,43 +1,17 @@
 "use client";
-import Image from "next/image";
-import MaxWidthWrapper from "./MaxWidthWrapper";
-import { Menu, ShoppingCart, Store, User, X } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Menu, ShoppingCart, Store, User, X } from "lucide-react";
+import { itemsMenu } from "../utilities/optionsList";
+import MaxWidthWrapper from "./MaxWidthWrapper";
+import Image from "next/image";
+import Link from "next/link";
 
-const itemsMenu = [
-  {
-    name: "Wait List",
-    item: "Wait List",
-    href: "/waitlist",
-  },
-  {
-    name: "Store",
-    item: <Store />,
-    href: "/store",
-  },
-  {
-    name: "Carrito de Compras",
-    item: <ShoppingCart />,
-    href: "/cart",
-  },
-  {
-    name: "Mi cuenta",
-    item: <User />,
-    href: "/login",
-  },
-];
 function NavBar() {
   const [isVisibleMenu, setIsVisibleMenu] = useState(false);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const [isScroll, setIsScroll] = useState(false);
 
-  window.onscroll = () =>{
-    setIsScroll(window.pageYOffset != 0 );
-  };
   const handledResize = () => {
     setIsVisibleMenu(window.innerWidth < 768);
-    setIsScroll(false)
   };
   const onOpenMenu = () => {
     {
@@ -53,7 +27,9 @@ function NavBar() {
   }, []);
   return (
     <MaxWidthWrapper>
-      <header className={"flex justify-around p-2 items-center bg-transparent "  } >
+      <header
+        className={"flex justify-around p-2 items-center bg-transparent "}
+      >
         {isVisibleMenu ? (
           <Menu onClick={onOpenMenu} className="item-hover " />
         ) : (
@@ -68,7 +44,7 @@ function NavBar() {
           />
         </Link>
         {isVisibleMenu ? (
-          <ShoppingCart className="item-hover"/>
+          <ShoppingCart className="item-hover" />
         ) : (
           <ul className="flex gap-5 items-center">
             {itemsMenu.map((item) => (
@@ -109,4 +85,3 @@ function NavBar() {
   );
 }
 export default NavBar;
-
