@@ -34,7 +34,9 @@ function NavBar() {
           <div
             className={
               "border-b flex items-center justify-between px-5 md:justify-around " +
-              (isScroll ? " bg-white" : " bg-transparent transition-background-color duration-300")
+              (+isScroll
+                ? "bg-white"
+                : "bg-gradient-to-t from-transparent via-transparent to-rgba(0, 0, 0, 0.3) transition duration-500 ease-in-out")
             }
           >
             <Menu onClick={onOpenMenu} className="item-hover md:hidden " />
@@ -47,7 +49,9 @@ function NavBar() {
                 alt="Logo art street"
               />
             </Link>
-            <ShoppingCart className="item-hover md:hidden" />
+            <Link href={"/cart"}>
+              <ShoppingCart className="item-hover md:hidden" />
+            </Link>
 
             <ul className="md:flex md:gap-5 md:items-center hidden">
               {itemsMenu.map((item) => (

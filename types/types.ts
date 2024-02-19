@@ -1,14 +1,20 @@
-import { MouseEventHandler } from "react";
+import { LucideIcon } from "lucide-react";
+import { MouseEventHandler, ReactNode } from "react";
 
 export interface MenuItem {
-  name: string;
-  item: React.ReactNode;
+  name?: string;
+  item:  LucideIcon | string 
   href: string;
 }
 
 export interface PropsCallAction {
-  href: string;
+  href?: string;
   title: string;
-  className: string;
+  className?: string;
   onClick?:MouseEventHandler<HTMLButtonElement>
+}
+
+export interface WidthWrapper{
+  children:ReactNode,
+  className?:string,
 }

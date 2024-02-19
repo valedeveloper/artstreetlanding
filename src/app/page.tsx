@@ -14,7 +14,6 @@ function HomePage(): JSX.Element {
           Si la Calle es el escenario
         </h1>
         <CallToAction
-          href="/"
           title="Aquí vas a encontrar el verdadero Arte"
           className=" bg-primaryYelow hover:bg-yellow-500"
           onClick={()=>scrollToSection("intro")}

@@ -30,6 +30,7 @@ export const products = [
     type: "T-Shirt",
     image: "/assets/images/CamisetaArtStreet.jpg",
     price: 45000,
+    offer:30,
     desc: "T-Shirt oficial de ArtStreet. Perfecta para usar en tu día a día o en tus presentaciones.",
     isOffer: true,
   },
@@ -58,6 +59,7 @@ export const products = [
     image: "/assets/images/CamisetaArtStreet.jpg",
     price: 45000,
     desc: "T-Shirt oficial de ArtStreet. Perfecta para usar en tu día a día o en tus presentaciones.",
+    offer:50,
     isOffer: true,
   },
   {

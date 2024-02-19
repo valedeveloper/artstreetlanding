@@ -13,3 +13,6 @@
 .button-call{
     @apply  text-lg p-4 font-semibold rounded-3xl  
 }
+.title{
+    @apply text-5xl font-semibold
+}
