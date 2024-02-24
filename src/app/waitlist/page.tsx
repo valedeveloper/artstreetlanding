@@ -1,6 +1,6 @@
 import React from 'react'
-import MaxWidthWrapper from '../components/MaxWidthWrapper'
-import CallToAction from '../components/CallToAction'
+import MaxWidthWrapper from '../../components/MaxWidthWrapper'
+import CallToAction from '../../components/CallToAction'
 
 function WaitPage(): JSX.Element {
   return (

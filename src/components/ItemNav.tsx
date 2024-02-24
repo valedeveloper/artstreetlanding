@@ -1,6 +1,6 @@
 import { Link } from "lucide-react";
 import React from "react";
-import { MenuItem } from "../../../types/types";
+import { MenuItem } from "../../types/types";
 
 function ItemNav({ href, item }: MenuItem) {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import MaxWidthWrapper from "../components/MaxWidthWrapper";
+import MaxWidthWrapper from "../../components/MaxWidthWrapper";
 import { filterTypes, products } from "../utilities/optionsList";
 import Image from "next/image";
 
@@ -34,7 +34,7 @@ function StorePage(): JSX.Element {
 
         <ul className="lg:w-3/4 grid grid-cols-1 gap-y-5 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0 ">
           {products.map((product) => {
-            const productWithOffer =
+            const priceWithOffer =
               product.offer !== undefined
                 ? product.price - (product.offer * product.price) / 100
                 : undefined;
@@ -61,10 +61,10 @@ function StorePage(): JSX.Element {
                   <h3 className=" text-base font-medium text-gray-900">
                     {product.name}
                   </h3>
-                  {productWithOffer  ? (
+                  {priceWithOffer  ? (
                     <div className="flex items-center gap-x-5">
                       <p className=" mt-3 text-sm text-muted-foreground text-left">
-                        {`$ ${productWithOffer}`}
+                        {`$ ${priceWithOffer}`}
                       </p>
                       <p className="mt-3 text-sm text-muted-foreground text-left">
                         <span

@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { PropsCallAction } from "../../../types/types";
+import { PropsCallAction } from "../../types/types";
 
 function CallToAction({
   href="",
@@ -9,13 +9,13 @@ function CallToAction({
   onClick,
 }: PropsCallAction): JSX.Element {
   return href !== "" ? (
-    <Link href={href}>
-      <button  className={"button-call" + className}>
+    <Link href={href} className="w-full">
+      <button  className={"button-call " + className} onClick={onClick}>
         {title}
       </button>
     </Link>
   ) : (
-    <button onClick={onClick} className={"button-call" + className}>
+    <button onClick={onClick} className={"button-call " + className}>
       {title}
     </button>
   );

@@ -11,11 +11,7 @@ export const itemsMenu = [
     item: <Store />,
     href: "/store",
   },
-  {
-    name: "Carrito de Compras",
-    item: <ShoppingCart />,
-    href: "/cart",
-  },
+ 
   {
     name: "Mi cuenta",
     item: <User />,

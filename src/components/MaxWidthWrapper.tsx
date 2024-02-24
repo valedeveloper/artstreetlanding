@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import { WidthWrapper } from "../../../types/types"
+import { WidthWrapper } from "../../types/types"
 
 function MaxWidthWrapper({
     children, className

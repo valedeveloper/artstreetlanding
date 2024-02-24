@@ -1,8 +1,8 @@
 'use client'
 import Link from "next/link";
-import MaxWidthWrapper from "./components/MaxWidthWrapper";
-import CallToAction from "./components/CallToAction";
-import Intro from "./components/Intro";
+import MaxWidthWrapper from "../components/MaxWidthWrapper";
+import CallToAction from "../components/CallToAction";
+import Intro from "../components/Intro";
 import { scrollToSection } from "./utilities/scrollToSection";
 
 function HomePage(): JSX.Element {
