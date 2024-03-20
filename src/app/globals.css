@@ -16,3 +16,6 @@
 .title{
     @apply text-5xl font-semibold
 }
+.links{
+    @apply text-primaryYelow
+}

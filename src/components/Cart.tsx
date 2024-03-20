@@ -1,5 +1,6 @@
-import { X } from "lucide-react";
-import { formatPrice } from "../app/utilities/utils";
+
+// import { X } from "lucide-react";
+import { formatPrice } from "../utilities/utils";
 import CallToAction from "./CallToAction";
 
 interface CartProps {
@@ -12,11 +13,11 @@ function Cart({ onCloseCart }: CartProps): JSX.Element {
     <div className="fixed inset-0 overflow-hidden z-50">
       <div className=" absolute inset-0 bg-gray-200 opacity-50 backdrop-blur-lg"></div>
       <div className="  justify-center z-50 fixed top-0  right-0 h-full bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg flex items-center w-full lg:absolute lg:flex lg:flex-col lg:items-center lg:p-5 lg:z-30 lg:right-0 lg:top-0 lg:h-full lg:overflow-y-auto lg:w-1/4">
-        <X
+        {/* { <X
           className=" self-start right-5 absolute top-5  item-hover"
           size={30}
           onClick={onCloseCart}
-        />
+        /> } */}
         <div className="flex flex-col gap-y-5 items-start h-screen">
           <h1 className="text-center font-bold text-xl   p-10 ">
             Carrito de Compras (0)

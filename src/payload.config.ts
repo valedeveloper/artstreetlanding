@@ -3,19 +3,25 @@ import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { slateEditor } from "@payloadcms/richtext-slate";
 import path from "path";
 import { buildConfig } from "payload/config";
+import { Users } from "./collections/Users";
+import dotenv from 'dotenv'
 
+dotenv.config({
+    path:path.resolve(__dirname,"../.env")
+})
 //El payload sirve para la parte de admin
 export default buildConfig({
     serverURL: process.env.NEXT_PUBLIC_SERVER_URL || "", // Es la url base del servidor de la app
-    collections: [],
+    collections: [Users],
     routes: {
         admin: "/sell", //En esta ruta está la interfaz de administración, es decir, donde se pueden gestionar la bd o config de la app
     },
     admin: {
+        user:"users",
         bundler: webpackBundler(),
         meta: {
             titleSuffix: "- Art Street", //El título que aparecerá en cada sitio de la página
-            favicon: "/artstreet.ico", //Pequeño icono que aparece en el sitio web
+            favicon: "/favicon.ico", //Pequeño icono que aparece en el sitio web
             ogImage: "/LogoArtStreetTransparente.png",
         },
     },

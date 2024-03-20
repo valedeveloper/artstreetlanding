@@ -15,7 +15,7 @@ export const itemsMenu = [
   {
     name: "Mi cuenta",
     item: <User />,
-    href: "/login",
+    href: "/signup",
   },
 ];
 

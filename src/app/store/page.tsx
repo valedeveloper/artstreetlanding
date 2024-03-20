@@ -1,6 +1,6 @@
 import React from "react";
 import MaxWidthWrapper from "../../components/MaxWidthWrapper";
-import { filterTypes, products } from "../utilities/optionsList";
+import { filterTypes, products } from "../../utilities/optionsList";
 import Image from "next/image";
 
 function StorePage(): JSX.Element {
@@ -18,11 +18,11 @@ function StorePage(): JSX.Element {
               placeholder="Buscar..."
               className="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:border-blue-500"
             />
-            <ul className="mt-4 flex flex-col gap-2">
+            <ul className=" flex gap-2 p-2 lg:flex-col  justify-center ">
               {filterTypes.map((type) => (
                 <li
                   key={type}
-                  className="cursor-pointer text-black hover:text-primaryYelow"
+                  className="cursor-pointer  bg-gray-300 p-2 rounded-full hover:text-primaryYelow"
                 >
                   {type}
                 </li>
@@ -32,7 +32,7 @@ function StorePage(): JSX.Element {
         </div>
         {/* Product List */}
 
-        <ul className="lg:w-3/4 grid grid-cols-1 gap-y-5 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0 ">
+        <ul className="lg:w-3/4 grid grid-cols-1 gap-y-5 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-3 ">
           {products.map((product) => {
             const priceWithOffer =
               product.offer !== undefined
@@ -41,7 +41,7 @@ function StorePage(): JSX.Element {
             return (
               <div
                 key={product.id}
-                className="text-center md:flex md:items-center md:text-left lg:block lg:text-center shadow-xl p-5 relative rounded-xl"
+                className="text-center md:flex md:items-center md:text-left lg:block lg:text-center shadow-xl p-5 relative rounded-xl "
               >
                 {product.isOffer && (
                   <button className="absolute top-5 left-2  bg-primaryYelow   px-3 py-1 rounded-xl">
@@ -49,12 +49,13 @@ function StorePage(): JSX.Element {
                   </button>
                 )}
 
-                <div className=" md:flex-shrink-0 flex justify-center">
+                <div className=" md:flex-shrink-0 flex justify-center ">
                   <Image
                     width={300}
                     height={300}
                     src={product.image}
                     alt={product.desc}
+                    className=" "
                   />
                 </div>
                 <div className="mt-6 ms:ml-4 md:mt-0 lg:ml-0 lg:mt-6">
