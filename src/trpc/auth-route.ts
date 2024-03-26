@@ -1,4 +1,7 @@
-import { AuthCredentialsLogin, AuthCredentialsValidator } from "../lib/credentialsValidator";
+import {
+  AuthCredentialsLogin,
+  AuthCredentialsValidator,
+} from "../lib/credentialsValidator";
 import { publicProcedure, router } from "./trpc";
 import { getPayloadClient } from "../getPayloadClient";
 import { TRPCError } from "@trpc/server";
@@ -13,6 +16,7 @@ export const authRouter = router({
 
       const { docs: users } = await payload.find({
         collection: "users",
+        overrideAccess:false,
         where: {
           email: {
             equals: email,
@@ -67,9 +71,9 @@ export const authRouter = router({
           },
           res,
         });
-        return{
-          success:true
-        }
+        return {
+          success: true,
+        };
       } catch (error) {
         throw new TRPCError({
           code: "UNAUTHORIZED",

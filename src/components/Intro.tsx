@@ -12,7 +12,7 @@ function Intro(): JSX.Element {
           ¡Comparte, sigue, dona y sé parte de esta increíble experiencia
           creativa!
         </span>
-        <CallToAction href="/waitlist" title="Notifícame" className=" bg-transparent border-2 border-primaryYelow text-primaryYelow w-full md:w-max hover:bg-primaryYelow hover:text-black   " />
+        <CallToAction href="/waitlist" title="Notifícame" className=" bg-transparent border-2 border-primaryYelow text-primaryYelow w-full md:w-max hover:bg-primaryYelow hover:text-black p-4   " />
       </div>
   );
 }

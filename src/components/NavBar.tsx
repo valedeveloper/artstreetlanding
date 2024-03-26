@@ -1,25 +1,24 @@
 "use client";
 import { useEffect, useState } from "react";
-// /  import { Menu, ShoppingCart, Store, User, X } from "lucide-react";
+// import { Menu, ShoppingCart, Store, User, X } from "lucide-react";
+import { FaShoppingCart } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
+import { CiMenuFries } from "react-icons/ci";
+
 import { itemsMenu } from "../utilities/optionsList";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import Image from "next/image";
 import Link from "next/link";
 import Cart from "./Cart";
 import { scrollToSection } from "@/utilities/scrollToSection";
-// import { getServerSideUser } from "@/lib/payload-utils";
-// import { cookies } from "next/headers";
+import { useAuth } from "@/hooks/useAuth";
 
-interface NavbarProps {
-  onToggleCart: () => void;
-}
-// eslint-disable-next-line @next/next/no-async-client-component
-async function NavBar() {
-  // const nextCookies=cookies()
-  // const{user}=await getServerSideUser(nextCookies)
+function NavBar() {
+  // const nextCookies = cookies();
+  // const { user } = await getServerSideUser(nextCookies);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-  // const [isScroll, setIsScroll] = useState(false);
   const [isOpenCart, setIsOpenCart] = useState(false);
+
   const onToggleCart = () => {
     setIsOpenCart((prev) => !prev);
   };
@@ -33,15 +32,6 @@ async function NavBar() {
     setIsOpenMenu(false);
   };
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     setIsScroll(window.pageYOffset !== 0);
-  //   };
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
   return (
     <>
       {isOpenCart && <Cart onCloseCart={onCloseCart} />}
@@ -50,11 +40,22 @@ async function NavBar() {
           <MaxWidthWrapper>
             <div
               className={
-                "border-b flex items-center justify-between px-5 md:justify-around " 
+                "border-b flex items-center justify-between px-5 md:justify-around "
               }
             >
-              {/* <Menu onClick={onOpenMenu} className="item-hover md:hidden " />  */}
-              { <li onClick={()=>scrollToSection("intro")} className=" hidden md:visible">¿Qué es Art Street</li> }
+              <CiMenuFries
+                size={20}
+                onClick={onOpenMenu}
+                className="item-hover md:hidden "
+              />
+              {
+                <li
+                  onClick={() => scrollToSection("intro")}
+                  className=" hidden md:visible"
+                >
+                  ¿Qué es Art Street?
+                </li>
+              }
               <Link href={"/"}>
                 <Image
                   src={"/assets/images/LogoArtStreetTransparente.png"}
@@ -63,28 +64,29 @@ async function NavBar() {
                   alt="Logo art street"
                 />
               </Link>
-              {/* { <ShoppingCart
+              <FaShoppingCart
+                size={20}
                 className="item-hover md:hidden"
                 onClick={onToggleCart}
-              /> } */}
+              />
 
               <ul className="md:flex md:gap-5 md:items-center hidden">
                 {itemsMenu.map((item) => (
                   <Link key={item.name} href={item.href}>
-                    <li className="item-hover">{item.item}</li>
+                    <li className="item-hover ">{item.item}</li>
                   </Link>
                 ))}
-                {/* {<ShoppingCart className="item-hover" onClick={onToggleCart} /> } */}
+                <FaShoppingCart className="item-hover" onClick={onToggleCart} size={20} />
               </ul>
 
               {isOpenMenu && (
                 <div className="fixed inset-0 bg-black bg-opacity-95 z-20 flex justify-center items-center transition-opacity duration-500">
                   <ul className="text-white text-center w-screen flex justify-center flex-col items-center text-2xl transition-opacity duration-500">
-                    {/* <X
+                    <IoMdClose
                       className="absolute right-8 top-8 cursor-pointer item-hover"
                       size={30}
                       onClick={onCloseMenu}
-                    /> */}
+                    />
                     <Link href={"/"}>
                       <li className="item-nav " onClick={onCloseMenu}>
                         Inicio
@@ -99,7 +101,7 @@ async function NavBar() {
                           </li>
                         </Link>
                       ))}
-                       
+                    {/* {user ? <p>Ingresar</p> : null} */}
                   </ul>
                 </div>
               )}

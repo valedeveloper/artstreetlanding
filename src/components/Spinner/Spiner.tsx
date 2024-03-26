@@ -3,8 +3,7 @@ import style from './spinner.module.css'
 
 function Spiner({}) {
   return (
-    <span className={style.loader}></span>
-  )
+<span className={style.loader}></span>  )
 }
 
 export default Spiner

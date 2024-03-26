@@ -8,10 +8,9 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { trpc } from "@/trpc/client";
 import Link from "next/link";
-import CallToAction from "@/components/CallToAction";
 import { ZodError } from "zod";
 import { useRouter } from "next/navigation";
-import {toast} from 'sonner'
+import { toast } from "sonner";
 function PageSignUp(): JSX.Element {
   const {
     register,
@@ -21,28 +20,26 @@ function PageSignUp(): JSX.Element {
     resolver: zodResolver(AuthCredentialsValidator),
   });
 
-  const router = useRouter()
+  const router = useRouter();
 
   const { mutate, isLoading, isSuccess } =
     trpc.auth.createPayloadUser.useMutation({
       onError: (err) => {
         if (err.data?.code === "CONFLICT") {
-          toast.error(
-            "Este correo ya está en uso. "
-          )
-          return
+          toast.error("Este correo ya está en uso. ");
+          return;
         }
 
         if (err instanceof ZodError) {
-          toast.error(err.issues[0].message)
-          return
+          toast.error(err.issues[0].message);
+          return;
         }
-        toast.error('Algo salió mal, Por favor intente de nuevo')
+        toast.error("Algo salió mal, por favor intente de nuevo");
       },
       onSuccess: ({ sentToEmail }) => {
-        toast.success(`Verification email sent to ${sentToEmail}  `)
-        router.push('verify-email?to=' + sentToEmail)
-      }
+        toast.success(`Verificación de correo enviado a ${sentToEmail}  `);
+        router.push("verify-email?to=" + sentToEmail);
+      },
     });
   const onSubmit = ({
     name,
@@ -68,13 +65,6 @@ function PageSignUp(): JSX.Element {
           className=" mx-auto w-full flex flex-col gap-y-6 items-center "
           onSubmit={handleSubmit(onSubmit)}
         >
-          {/* <input
-            placeholder="Teléfono"
-            className=" p-4 border-1 border-white w-full bg-transparent "
-            {...register("phone")}
-            
-
-          />    */}
           <input
             placeholder="Nombre"
             className="p-4 border-1 border-white w-full bg-transparent"
@@ -97,11 +87,11 @@ function PageSignUp(): JSX.Element {
             type="email"
             required
           />
-          {
-            errors?.email?.message && (
-              <p className=" self-start text-sm text-red-500">{errors.email.message}</p>
-            )
-          }
+          {errors?.email?.message && (
+            <p className=" self-start text-sm text-red-500">
+              {errors.email.message}
+            </p>
+          )}
           <input
             placeholder="Constraseña"
             className={
@@ -110,20 +100,14 @@ function PageSignUp(): JSX.Element {
             }
             {...register("password")}
             type="password"
-
             required
           />
-          {
-            errors?.password?.message && (
-              <p className=" self-start  text-sm text-red-500">{errors.password.message}</p>
-            )
-          }
-          {/* <CallToAction
-            title=" Crear cuenta "
-            className=" bg-primaryYelow text-black w-full lg:w-max hover:bg-yellow-500"
-          />   */}
-
-          <button className=" button-call bg-primaryYelow text-black w-full lg:w-max hover:bg-yellow-500">
+          {errors?.password?.message && (
+            <p className=" self-start  text-sm text-red-500">
+              {errors.password.message}
+            </p>
+          )}
+          <button className=" button-call p-3 bg-primaryYelow text-black w-full lg:w-max hover:bg-yellow-500">
             Crear cuenta
           </button>
         </form>

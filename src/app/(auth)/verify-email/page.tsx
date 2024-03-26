@@ -23,7 +23,7 @@ function VerifyEmailPage({ searchParams }: PageProps) {
             Revisa tu correo electrónico
           </h1>
           <p className=" text-primaryGray text-center text-lg">
-            Ya casi terminas. Enviamos un correo electrónico   
+            Ya casi terminas. Enviamos un correo electrónico
             <span>{` ${toEmail ?? ""}`}</span> con un enlace para activar tu
             cuenta. Consulta tu correo electrónico y haz clic en el enlace de
             activación.

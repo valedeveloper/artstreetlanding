@@ -8,7 +8,6 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { trpc } from "@/trpc/client";
 import Link from "next/link";
-import CallToAction from "@/components/CallToAction";
 import { ZodError } from "zod";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
@@ -36,13 +35,13 @@ function PageSignIn(): JSX.Element {
 
       if (origin) {
         router.push(`/${origin}`);
-        return
+        return;
       }
       if (isSeller) {
         router.push(`/sell`);
-        return
+        return;
       }
-      router.push("/")
+      router.push("/");
     },
     onError: (err) => {
       if (err.data?.code === "UNAUTHORIZED") {
@@ -56,35 +55,29 @@ function PageSignIn(): JSX.Element {
       toast.error("Algo salió mal, Por favor intente de nuevo");
     },
   });
-  const onSubmit = ({
-    email,
-    password,
-  }: TAuthCredentialsLogin) => {
+  const onSubmit = ({ email, password }: TAuthCredentialsLogin) => {
     console.log("Submit");
     signInUser({ email, password });
   };
 
   const continueAsSeller = () => {
-    router.push("?as=seller")
+    router.push("?as=seller");
     console.log("Seller");
-
-  }
+  };
   const continueAsBuyer = () => {
-    router.replace("/signin", undefined)
+    router.replace("/signin", undefined);
     console.log("Buyer");
-
-  }
+  };
   return (
     <div className="bg-primaryBlack h-screen py-5 px-10 text-white flex flex-col gap-y-10 items-center">
       <h1 className="text-2xl border-b-1 border-white self-start w-full py-2 ">
-        Ingresar a la cuenta {isSeller ? "vendedor" : ""}
+        Ingresa a la cuenta, {isSeller ? "Vendedor" : "Artista"}
       </h1>
       <div className="container relative flex flex-col items-center justify-center gap-y-5 lg:w-[750px]">
         <form
           className=" mx-auto w-full flex flex-col gap-y-6 items-center "
           onSubmit={handleSubmit(onSubmit)}
         >
-
           <input
             placeholder="Correo electrónico"
             className=" p-4 border-1 border-white w-full bg-transparent "
@@ -113,7 +106,7 @@ function PageSignIn(): JSX.Element {
             </p>
           )}
 
-          <button className=" button-call bg-primaryYelow text-black w-full lg:w-max hover:bg-yellow-500">
+          <button className=" button-call p-3 bg-primaryYelow text-black w-full lg:w-max hover:bg-yellow-500">
             Ingresar
           </button>
         </form>
@@ -122,17 +115,27 @@ function PageSignIn(): JSX.Element {
             <span className="w-full border-t"></span>
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground"> or </span>
+            <span className="bg-background px-2 text-muted-foreground">
+              {" "}
+              or{" "}
+            </span>
           </div>
         </div>
-        {
-          isSeller ? (
-            <button className=" p-3 rounded-full bg-transparent border-2 border-primaryYelow text-primaryYelow w-full lg:w-max  md:w-max hover:bg-primaryYelow hover:text-black   " onClick={continueAsBuyer}>Continúe como comprador</button>
-          ) : (
-            <button className="  p-3 rounded-full bg-transparent border-2 border-primaryYelow text-primaryYelow w-full lg:w-max  md:w-max hover:bg-primaryYelow hover:text-black   " onClick={continueAsSeller}>Continúe como vendedor</button>
-
-          )
-        }
+        {isSeller ? (
+          <button
+            className=" p-3 rounded-full bg-transparent border-2 border-primaryYelow text-primaryYelow w-full lg:w-max  md:w-max hover:bg-primaryYelow hover:text-black   "
+            onClick={continueAsBuyer}
+          >
+            ¿Eres artista?
+          </button>
+        ) : (
+          <button
+            className="  p-3 rounded-full bg-transparent border-2 border-primaryYelow text-primaryYelow w-full lg:w-max  md:w-max hover:bg-primaryYelow hover:text-black   "
+            onClick={continueAsSeller}
+          >
+            ¿Eres personal autorizado?
+          </button>
+        )}
 
         <p>
           ¿No tiene cuenta?

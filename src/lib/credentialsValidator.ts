@@ -19,6 +19,5 @@ export const AuthCredentialsLogin = z.object({
 export type TAuthCredentialsValidator = z.infer<
   typeof AuthCredentialsValidator
 >;
-export type TAuthCredentialsLogin = z.infer<
-  typeof AuthCredentialsLogin
->;
+export type TAuthCredentialsLogin = z.infer<typeof AuthCredentialsLogin>;
+

@@ -15,12 +15,12 @@ function VerifyEmail({ token }: VerifyEmailProps) {
 
   if (isError) {
     return (
-      <div className=" flex flex-col items-center gap-2">
+      <div className=" flex flex-col items-center gap-5">
         <Image
           src={"/assets/images/boton-eliminar.png"}
           alt="Correo verificado"
-          width={80}
-          height={80}
+          width={50}
+          height={50}
         />
         <p className=" text-primaryGray text-muted-foregrund text-sm">
           No es válido este token. Intente de nuevo.
@@ -37,26 +37,32 @@ function VerifyEmail({ token }: VerifyEmailProps) {
           width={80}
           height={80}
         />
-        <h3 className=" text-primaryGray font-semibold text-2xl">¡Todo está listo!</h3>
-        <p className="  text-primaryGray text-mutted-foreground text-center mt-1">Gracias por verificar tu correo. </p>
-        <CallToAction href="/signin" title="Inicia Sesión" className=" bg-primaryYelow text-white w-full"/>
+        <h3 className=" text-primaryGray font-semibold text-2xl">
+          ¡Todo está listo!
+        </h3>
+        <p className="  text-primaryGray text-mutted-foreground text-center mt-1">
+          Gracias por verificar tu correo.{" "}
+        </p>
+        <CallToAction
+          href="/signin"
+          title="Inicia Sesión"
+          className=" bg-primaryYelow text-white w-full"
+        />
       </div>
-    )
+    );
   }
 
-  if(isLoading){
-    return(
+  if (isLoading) {
+    return (
       <div className=" flex flex-col items-center gap-2">
-        <Spiner/>
+        <Spiner />
         <h3>Verificando ... </h3>
         <p className=" text-primaryGray text-muted-foregrund text-sm">
           No tardará mucho, espera un momento
         </p>
       </div>
-    )
+    );
   }
-
-
 }
 
 export default VerifyEmail;

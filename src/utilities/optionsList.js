@@ -1,20 +1,20 @@
-import { ShoppingCart, Store, User, X } from "lucide-react";
-
+// import { ShoppingCart, Store, User, X } from "lucide-react";
+import { FaUser,FaShoppingBasket   } from "react-icons/fa";
 export const itemsMenu = [
   {
     name: "Wait List",
-    item: "Wait List",
+    item: "Lista de Espera",
     href: "/waitlist",
   },
   {
     name: "Store",
-    item: <Store />,
+    item: <FaShoppingBasket size={20} /> ,
     href: "/store",
   },
- 
+
   {
     name: "Mi cuenta",
-    item: <User />,
+    item: <FaUser  size={20}/>,
     href: "/signup",
   },
 ];
@@ -23,17 +23,17 @@ export const products = [
   {
     id: 0,
     name: "T-Shirt Art Street",
-    type: "T-Shirt",
+    category: "T-Shirt",
     image: "/assets/images/CamisetaArtStreet.jpg",
     price: 45000,
-    offer:30,
+    offer: 30,
     desc: "T-Shirt oficial de ArtStreet. Perfecta para usar en tu día a día o en tus presentaciones.",
     isOffer: true,
   },
   {
     id: 1,
     name: "T-Shirt Art Street",
-    type: "Mugs",
+    category: "Mugs",
     image: "/assets/images/CamisetaArtStreet.jpg",
     price: 45000,
     desc: "T-Shirt oficial de ArtStreet. Perfecta para usar en tu día a día o en tus presentaciones.",
@@ -42,7 +42,7 @@ export const products = [
   {
     id: 2,
     name: "T-Shirt Art Street",
-    type: "Hoodies",
+    category: "Hoodies",
     image: "/assets/images/CamisetaArtStreet.jpg",
     price: 45000,
     desc: "T-Shirt oficial de ArtStreet. Perfecta para usar en tu día a día o en tus presentaciones.",
@@ -51,17 +51,17 @@ export const products = [
   {
     id: 3,
     name: "T-Shirt Art Street",
-    type: "T-Shirt",
+    category: "T-Shirt",
     image: "/assets/images/CamisetaArtStreet.jpg",
     price: 45000,
     desc: "T-Shirt oficial de ArtStreet. Perfecta para usar en tu día a día o en tus presentaciones.",
-    offer:50,
+    offer: 50,
     isOffer: true,
   },
   {
     id: 4,
     name: "T-Shirt Art Street",
-    type: "Hoodies",
+    category: "Hoodies",
     image: "/assets/images/CamisetaArtStreet.jpg",
     price: 45000,
     desc: "T-Shirt oficial de ArtStreet. Perfecta para usar en tu día a día o en tus presentaciones.",
@@ -69,9 +69,9 @@ export const products = [
   },
 ];
 
-export const typesProducts = products.map((product) => product.type);
+export const typesProducts = products.map((product) => product.category);
 export const filterTypes = typesProducts.filter(
-  (type, index) => typesProducts.indexOf(type) === index
+  (category, index) => typesProducts.indexOf(category) === index
 );
 //Cuando existan varios productos de un mismo tipo y solo quiero
 //que aparezca uno para los filtros, utilizo el index of con e index. Ya que ppor muchos productos delmismo tipo que existsn solo va atraer el valor de uno solo, el primero que encuetnre
