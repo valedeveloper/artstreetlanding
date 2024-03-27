@@ -1,4 +1,6 @@
 // import { LucideIcon } from "lucide-react";
+import { TQueryValidator } from "@/lib/queryValidator";
+import { Product } from "@/payload-types";
 import { InitOptions } from "payload/config";
 import { MouseEventHandler, ReactNode } from "react";
 export interface MenuItem {
@@ -6,17 +8,28 @@ export interface MenuItem {
   item: string;
   href: string;
 }
-export interface Product {
-  product: {
-    id: number;
-    name: string;
-    category: string;
-    image: string;
-    price: number;
-    offer?: number;
-    desc: string;
-    isOffer?: boolean;
-  };
+// export interface Product {
+//   product: {
+//     id: number;
+//     name: string;
+//     category: string;
+//     image: string;
+//     price: number;
+//     offer?: number;
+//     desc: string;
+//     isOffer?: boolean;
+//   };
+// }
+export interface ProductReelProps{
+  title:string,
+  subtitle?:string,
+  href?:string,
+  query:TQueryValidator
+}
+
+export interface ProductListing{
+  product:Product | null,
+  index:number
 }
 
 export interface PropsCallAction {

@@ -46,7 +46,8 @@ function NavBar() {
               <CiMenuFries
                 size={20}
                 onClick={onOpenMenu}
-                className="item-hover md:hidden "
+                color="black"
+                className="item-hover md:hidden  "
               />
               {
                 <li
@@ -71,12 +72,23 @@ function NavBar() {
               />
 
               <ul className="md:flex md:gap-5 md:items-center hidden">
+                <Link href={"/"}
+                  className=" cursor-pointer item-hover"
+                  onClick={() => scrollToSection("wait-list")}
+                >
+                  Lista de Espera
+                </Link>
+
                 {itemsMenu.map((item) => (
                   <Link key={item.name} href={item.href}>
                     <li className="item-hover ">{item.item}</li>
                   </Link>
                 ))}
-                <FaShoppingCart className="item-hover" onClick={onToggleCart} size={20} />
+                <FaShoppingCart
+                  className="item-hover"
+                  onClick={onToggleCart}
+                  size={20}
+                />
               </ul>
 
               {isOpenMenu && (
@@ -92,6 +104,7 @@ function NavBar() {
                         Inicio
                       </li>
                     </Link>
+                   
                     {itemsMenu
                       .filter((item) => item.href !== "/cart")
                       .map((item) => (

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
-import Link from "next/link";
-import Providers from "../components/Provider";
 import { Toaster } from "sonner";
-const inter = Inter({ subsets: ["latin"] });
+import BannerWaitList from "@/components/BannerWaitList";
+import NavBar from "../components/NavBar";
+import Providers from "../components/Provider";
+import Footer from "../components/Footer";
+import "./globals.css";
 
+
+const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Art Street",
   description: "Landing Page Art Street",
@@ -25,14 +26,7 @@ export default function RootLayout({
           " w-full relative h-full font-sans antialiased" + inter.className
         }
       >
-        <p className=" text-md text-center  bg-primaryYelow p-1 w-full hover:bg-yellow-500">
-          {" "}
-          <Link href={"/waitlist"}>
-            Estamos desarrollando un producto increíble ¡Click para ingresar a
-            la lista de espera!
-          </Link>
-        </p>
-
+        <BannerWaitList />
         <Providers>
           <NavBar />
           <main className=" relative flex flex-col min-h-screen">

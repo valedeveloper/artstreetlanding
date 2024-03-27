@@ -41,12 +41,12 @@ function Cart({ onCloseCart }: CartProps): JSX.Element {
               />
             </>
           ) : (
-            <div className=" flex h-full flex-col items-center  space-y-1  w-full">
+            <div className=" flex h-full flex-col items-center gap-y-5 w-full">
                 <p>No tiene productos en su carrito :(</p>
                 <CallToAction
                   title="Compra Ahora"
-                  className=" bg-primaryYelow w-full hover:bg-yellow-400"
-                  href="/store"
+                  className=" bg-primaryYelow w-full hover:bg-yellow-400 p-3"
+                  href="/products"
                   onClick={onCloseCart}
                 />
             </div>

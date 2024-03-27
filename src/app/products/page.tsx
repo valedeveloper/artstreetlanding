@@ -2,11 +2,20 @@ import React from "react";
 import MaxWidthWrapper from "../../components/MaxWidthWrapper";
 import { filterTypes, products } from "../../utilities/optionsList";
 import Image from "next/image";
+import ProductReel from "../../components/ProductReel";
 
-function StorePage(): JSX.Element {
+function ProductsPage(): JSX.Element {
   return (
     <section className="border border-gray-200 bg-gray-80 my-12 ">
       <MaxWidthWrapper className="py-20 flex flex-col lg:flex-row gap-10">
+
+        <ProductReel title="Nuevos Lanzamientos"
+          subtitle="Disfruta de las nuevas camisetas para tus presentaciones con Art Street"
+          href="/products"
+          query={{
+            sort: "desc", limit: 4
+          }} />
+
         {/* Left Bar */}
         <div className="lg:w-1/4 lg:flex-none">
           <div className="mb-8">
@@ -30,6 +39,7 @@ function StorePage(): JSX.Element {
             </ul>
           </div>
         </div>
+
         {/* Product List */}
 
         <ul className="lg:w-3/4 grid grid-cols-1 gap-y-5 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-3 ">
@@ -62,7 +72,7 @@ function StorePage(): JSX.Element {
                   <h3 className=" text-base font-medium text-gray-900">
                     {product.name}
                   </h3>
-                  {priceWithOffer  ? (
+                  {priceWithOffer ? (
                     <div className="flex items-center gap-x-5">
                       <p className=" mt-3 text-sm text-muted-foreground text-left">
                         {`$ ${priceWithOffer}`}
@@ -96,4 +106,4 @@ function StorePage(): JSX.Element {
   );
 }
 
-export default StorePage;
+export default ProductsPage;

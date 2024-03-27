@@ -14,7 +14,6 @@ import { toast } from "sonner";
 function PageSignIn(): JSX.Element {
   const searchParamas = useSearchParams();
   const router = useRouter();
-  const isSeller = searchParamas.get("as") === "seller";
   const origin = searchParamas.get("origin");
   const {
     register,
@@ -37,10 +36,6 @@ function PageSignIn(): JSX.Element {
         router.push(`/${origin}`);
         return;
       }
-      if (isSeller) {
-        router.push(`/sell`);
-        return;
-      }
       router.push("/");
     },
     onError: (err) => {
@@ -60,18 +55,10 @@ function PageSignIn(): JSX.Element {
     signInUser({ email, password });
   };
 
-  const continueAsSeller = () => {
-    router.push("?as=seller");
-    console.log("Seller");
-  };
-  const continueAsBuyer = () => {
-    router.replace("/signin", undefined);
-    console.log("Buyer");
-  };
   return (
     <div className="bg-primaryBlack h-screen py-5 px-10 text-white flex flex-col gap-y-10 items-center">
       <h1 className="text-2xl border-b-1 border-white self-start w-full py-2 ">
-        Ingresa a la cuenta, {isSeller ? "Vendedor" : "Artista"}
+        Ingresa a la cuenta
       </h1>
       <div className="container relative flex flex-col items-center justify-center gap-y-5 lg:w-[750px]">
         <form
@@ -121,22 +108,9 @@ function PageSignIn(): JSX.Element {
             </span>
           </div>
         </div>
-        {isSeller ? (
-          <button
-            className=" p-3 rounded-full bg-transparent border-2 border-primaryYelow text-primaryYelow w-full lg:w-max  md:w-max hover:bg-primaryYelow hover:text-black   "
-            onClick={continueAsBuyer}
-          >
-            ¿Eres artista?
-          </button>
-        ) : (
-          <button
-            className="  p-3 rounded-full bg-transparent border-2 border-primaryYelow text-primaryYelow w-full lg:w-max  md:w-max hover:bg-primaryYelow hover:text-black   "
-            onClick={continueAsSeller}
-          >
-            ¿Eres personal autorizado?
-          </button>
-        )}
-
+        <button className=" p-3 rounded-full bg-transparent border-2 border-primaryYelow text-primaryYelow w-full lg:w-max  md:w-max hover:bg-primaryYelow hover:text-black   ">
+          ¿Eres artista?
+        </button>
         <p>
           ¿No tiene cuenta?
           <Link href={"/signup"} className="links">

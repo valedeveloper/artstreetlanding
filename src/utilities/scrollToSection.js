@@ -7,6 +7,7 @@ export const scrollToSection = (sectionId) => {
   }
 };
 
+
 //Aquí es casi lo mismo, pero se le dice ve a, en este caso donde top=0
 export const handleBackToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
