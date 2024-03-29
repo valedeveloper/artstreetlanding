@@ -7,7 +7,7 @@ export interface MenuItem {
   name?: string;
   item: string | ReactNode;
   href: string;
-  onClick?:()=>void
+  onClick?: () => void;
 }
 // export interface Product {
 //   product: {
@@ -21,19 +21,19 @@ export interface MenuItem {
 //     isOffer?: boolean;
 //   };
 // }
-export interface ProductReelProps{
-  title:string,
-  subtitle?:string,
-  href?:string,
-  query:TQueryValidator
+export interface ProductReelProps {
+  title: string;
+  subtitle?: string;
+  href?: string;
+  query: TQueryValidator;
 }
 
-export interface ProductListing{
-  product:Product | null,
-  index:number
+export interface ProductListing {
+  product: Product | null;
+  index: number;
 }
-export interface ImageSlider{
-  urls:string[]
+export interface ImageSlider {
+  urls: string[];
 }
 
 export interface PropsCallAction {
@@ -60,6 +60,12 @@ export interface PageProps {
   };
 }
 
+export interface ProductDetails {
+  params: {
+    productId: string;
+  };
+}
+
 export interface VerifyEmailProps {
   token: string;
 }
@@ -70,3 +76,17 @@ export interface VerifyEmailProps {
 export interface Args {
   initialOptions?: Partial<InitOptions>;
 }
+
+export interface CartItem {
+  product: Product;
+};
+export interface CartState {
+  items: CartItem[];
+  addProduct: (product: Product) => void;
+  removeProduct: (productId: string) => void;
+  clearCart: () => void;
+};
+export interface CartProduct {
+  product: Product
+};
+

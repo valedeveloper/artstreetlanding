@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import MaxWidthWrapper from "../../components/MaxWidthWrapper";
 import { filterTypes, products } from "../../utilities/optionsList";
@@ -9,9 +9,7 @@ function ProductsPage(): JSX.Element {
   return (
     <section className="border border-gray-200 bg-gray-80 my-12 ">
       <MaxWidthWrapper className="py-20 flex flex-col lg:flex-row gap-10">
-
-      
-        {/* Left Bar */}
+        {/* Left Bar
         <div className="lg:w-1/4 lg:flex-none">
           <div className="mb-8">
             <h2 className="text-lg font-semibold mb-4 text-secondaryYelow">
@@ -33,16 +31,18 @@ function ProductsPage(): JSX.Element {
               ))}
             </ul>
           </div>
-        </div>
+        </div> */}
 
         {/* Product List */}
 
-        <ProductReel title="Nuevos Lanzamientos"
-          subtitle="Disfruta de las nuevas camisetas para tus presentaciones con Art Street"
+        <ProductReel
           query={{
-            sort: "desc", limit: 4
-          }} />
-
+            sort: "desc",
+            limit: 4,
+          }}
+          title="Categorías Nuevas"
+       
+        />
       </MaxWidthWrapper>
     </section>
   );

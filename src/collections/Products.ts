@@ -57,14 +57,26 @@ export const Products: CollectionConfig = {
       })),
       required: true,
     },
-     {
-       name: "product_files",
-       label: "Product file(s)",
-       type: "relationship",
-       relationTo: "product_files",
-       hasMany: false,
-       required: true,
-     },
+    
+    //   name: "sizes", // Nombre del campo de tallas
+    //   label: "Tallas", // Etiqueta para mostrar en la interfaz de usuario
+    //   type: "c", // Tipo de campo (puede ser checkbox, select múltiple, etc.)
+    //   options: [ // Opciones disponibles para las tallas
+    //     { label: "S", value: "S" }, // Por ejemplo, tallas S, M, L, etc.
+    //     { label: "M", value: "M" },
+    //     { label: "L", value: "L" },
+    //   ],
+    //   required: false, // Hacer que este campo sea opcional
+    // },
+
+    {
+      name: "product_files",
+      label: "Product file(s)",
+      type: "relationship",
+      relationTo: "product_files",
+      hasMany: false,
+      required: true,
+    },
     {
       name: "approvedForSale",
       label: "Estado del Producto",

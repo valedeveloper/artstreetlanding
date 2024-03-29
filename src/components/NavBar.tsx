@@ -9,7 +9,7 @@ import { itemsMenu } from "../utilities/optionsList";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import Image from "next/image";
 import Link from "next/link";
-import Cart from "./Cart";
+import Cart from "./Cart/Cart";
 import { scrollToSection } from "@/utilities/scrollToSection";
 import { useAuth } from "@/hooks/useAuth";
 import { MenuItem } from "../../types/types";
@@ -17,7 +17,7 @@ import { MenuItem } from "../../types/types";
 function ItemNav({ href, item,onClick }: MenuItem) {
   return (
     <Link href={href} onClick={onClick}>
-      <li className="item-hover">{item}</li>
+      <li className="item-hover ">{item}</li>
     </Link>
   );
 }
@@ -99,14 +99,14 @@ function NavBar() {
 
               {isOpenMenu && (
                 <div className="fixed inset-0 bg-black bg-opacity-95 z-20 flex justify-center items-center transition-opacity duration-500">
-                  <ul className="text-white text-center w-screen flex justify-center flex-col items-center text-2xl transition-opacity duration-500">
+                  <ul className="text-white text-center w-screen flex justify-center flex-col items-center text-2xl transition-opacity duration-500 gap-5">
                     <IoMdClose
                       className="absolute right-8 top-8 cursor-pointer item-hover"
                       size={30}
                       onClick={onCloseMenu}
                     />
                     <Link href={"/"}>
-                      <li className="item-nav " onClick={onCloseMenu}>
+                      <li className=" item-hover " onClick={onCloseMenu}>
                         Inicio
                       </li>
                     </Link>

@@ -11,7 +11,6 @@ import FeaturesSection from "@/components/FeaturesSection";
 function HomePage(): JSX.Element {
   return (
     <>
-
       <div className="h-screen relative overflow-hidden">
         <Image
           src={"/assets/gif/artist.gif"}
@@ -32,15 +31,18 @@ function HomePage(): JSX.Element {
         </div>
       </div>
       <Intro />
-      <FeaturesSection/>
+      <FeaturesSection />
       <WaitScreen />
-      <AppInfo />
-      {/* <ProductReel query={{
-        sort: "desc", limit: 4
-      }} title="Categorías Nuevas" href="/products" /> */}
-
-
-     
+      <ProductReel
+        title="Conoce la Store"
+        subtitle="Compra para tus presentaciones y vístete con Art Street"
+        href="/products"
+        query={{
+          sort: "desc",
+          limit: 4,
+        }}
+      />
+        <AppInfo />
     </>
   );
 }

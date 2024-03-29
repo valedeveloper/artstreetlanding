@@ -20,7 +20,7 @@
     @apply text-primaryYelow
 }
 .inputs{
-    @apply bg-primaryBlack block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primaryYelow focus:text-white
+    @apply bg-primaryBlack block w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-primaryYelow focus:text-white
 }
 .labelInput{
     @apply  bg-primaryBlack absolute top-0 left-4 -mt-2 px-1 text-xs text-white 

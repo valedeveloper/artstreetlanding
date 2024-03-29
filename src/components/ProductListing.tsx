@@ -2,14 +2,15 @@
 import React, { useEffect, useState } from 'react'
 import { ProductListing } from '../../types/types'
 import { CardSkeleton } from './skeletons'
-import Link from 'next/link'
 import { formatPrice } from '@/utilities/utils'
 import ImageSlider from './ImageSlider'
+import { getUrlsProduct } from '@/utilities/getUrlsProduct'
+import Link from 'next/link'
 
 
 function ProductListing({ product, index }: ProductListing) {
     const [isVisible, setIsVisible] = useState<boolean>(false)
-    const validUrls=product?.images.map(({image})=>typeof image==="string" ?image:image.url).filter(Boolean) as string[]
+    const validUrls=getUrlsProduct(product)
     console.log(validUrls);
     
     useEffect(() => {

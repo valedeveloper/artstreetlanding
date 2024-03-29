@@ -27,7 +27,7 @@ function ProductReel({ title, subtitle, href, query }: ProductReelProps) {
     mapProducts = new Array<null>(query.limit ?? FALLBACK_LIMIT).fill(null);
   }
   return (
-    <section className=" py-12 w-full h-full">
+    <section className=" p-12 w-full h-full">
       <div className="md:flex md:items-center md:justify-between mb-4">
         <div className="max-w-2xl px-4 lg:max-w-4xl lg:px-0">
           {title ? (
@@ -39,6 +39,15 @@ function ProductReel({ title, subtitle, href, query }: ProductReelProps) {
             <p className="mt-2 text-sm text-muted-foreground">{subtitle}</p>
           ) : null}
         </div>
+        
+        {href ? (
+          <Link
+            href={href}
+            className='hidden text-sm font-medium text-primaryYelow hover:text-yelow-800 md:block'>
+            Compra Aquí{' '}
+            <span aria-hidden='true'>&rarr;</span>
+          </Link>
+        ) : null}
 
 
       </div>

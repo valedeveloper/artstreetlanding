@@ -1,3 +1,4 @@
+"use client"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";

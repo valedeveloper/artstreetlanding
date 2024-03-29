@@ -60,7 +60,7 @@ function PageSignUp(): JSX.Element {
   };
 
   return (
-    <div className="bg-primaryBlack h-screen py-5 px-10 text-white flex flex-col gap-y-10 items-center">
+    <div className="bg-primaryBlack  p-10 text-white flex flex-col gap-y-10 items-center">
       <h1 className="text-2xl border-b-1 border-white self-start w-full py-2 ">
         Crear cuenta
       </h1>

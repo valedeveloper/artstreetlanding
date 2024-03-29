@@ -5,6 +5,8 @@ import { QueryValidator } from "../lib/validators/queryValidator";
 import { query } from "express";
 import payload from "payload";
 import { getPayloadClient } from "../getPayloadClient";
+import { EmailCredential } from "@/lib/validators/credentialsValidator";
+import { TRPCError } from "@trpc/server";
 
 //Aquí utilizo ese outer que inicialicé en el trpc y exporto un typo que va  a seleccionar los tipos que devuelva el app router
 export const appRouter = router({
@@ -45,7 +47,7 @@ export const appRouter = router({
         collection: 'products',
         where: {
           approvedForSale: {
-            equals: 'pending',
+            equals: 'approved',
           },
           ...parsedQueryOpts,
         },
@@ -60,5 +62,7 @@ export const appRouter = router({
         nextPage: hasNextPage ? nextPage : null,
       }
     }),
-});
+    
+
+  });
 export type AppRouter = typeof appRouter;
