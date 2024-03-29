@@ -1,11 +1,15 @@
 // import { ShoppingCart, Store, User, X } from "lucide-react";
 import React from 'react'
-import { FaUser,FaShoppingBasket   } from "react-icons/fa";
+import { FaUser   } from "react-icons/fa";
 export const itemsMenu = [
-
+  {
+    name:"Lista de Espera",
+    item:"Lista de Espera",
+    href:"/"
+  },
   {
     name: "Store",
-    item: <FaShoppingBasket size={20} /> ,
+    item: "Store",
     href: "/products",
   },
 

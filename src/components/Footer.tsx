@@ -15,31 +15,23 @@ function Footer(): JSX.Element {
         <span className=" text-primaryGray">Descubre el verdadero Arte</span>
       </h2> */}
       <ul className="flex flex-col items-center  p-2 md:flex-row gap-2">
-        <li className=" item-hover border-r-1 px-2 border-gray-500">
-          <Link href="/" >
-            Inicio 
-          </Link> 
+        <li className=" item-hover border-r-1 px-2 border-gray-500 ">
+          <Link href="/">Inicio</Link>
         </li>
-        <li className=" item-hover border-r-1 px-2 border-gray-500">
-          <Link
-            href="/"
-            onClick={() => scrollToSection("intro")}
-          >
-            ¿Qué es Art Street?
-          </Link>
+        <li
+          className=" item-hover border-r-1 px-2 border-gray-500"
+          onClick={() => scrollToSection("intro")}
+        >
+          ¿Qué es Art Street?
         </li>
-        <li className=" item-hover border-r-1 px-2 border-gray-500">
-          <Link
-            href="/"
-            onClick={() => scrollToSection("wait-list")}
-          >
-            Lista de Espera
-          </Link>
+        <li
+          className=" item-hover border-r-1 px-2 border-gray-500"
+          onClick={() => scrollToSection("wait-list")}
+        >
+          Lista de Espera
         </li>
         <li className="item-hover">
-          <Link href="/products" >
-            Store
-          </Link>
+          <Link href="/products">Store</Link>
         </li>
         {/* <li className="nav-item">
           <Link href="#" className="nav-link px-2 text-body-secondary">

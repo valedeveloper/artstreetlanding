@@ -46,7 +46,7 @@ function VerifyEmail({ token }: VerifyEmailProps) {
         <CallToAction
           href="/signin"
           title="Inicia Sesión"
-          className=" bg-primaryYelow text-white w-full"
+          className=" self-center button-call p-3 bg-primaryYelow text-black w-full lg:w-max hover:bg-yellow-500"
         />
       </div>
     );

@@ -6,6 +6,7 @@ import WaitScreen from "./waitlist/page";
 import { scrollToSection } from "../utilities/scrollToSection";
 import AppInfo from "@/components/AppInfo";
 import ProductReel from "@/components/ProductReel";
+import FeaturesSection from "@/components/FeaturesSection";
 
 function HomePage(): JSX.Element {
   return (
@@ -31,6 +32,7 @@ function HomePage(): JSX.Element {
         </div>
       </div>
       <Intro />
+      <FeaturesSection/>
       <WaitScreen />
       <AppInfo />
       {/* <ProductReel query={{

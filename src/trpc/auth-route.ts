@@ -1,9 +1,11 @@
 import {
   AuthCredentialsLogin,
   AuthCredentialsValidator,
-} from "../lib/credentialsValidator";
+  EmailCredential,
+} from "../lib/validators/credentialsValidator";
 import { publicProcedure, router } from "./trpc";
 import { getPayloadClient } from "../getPayloadClient";
+import { sendWaitlistEmail } from "../waitListMail";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
@@ -16,7 +18,7 @@ export const authRouter = router({
 
       const { docs: users } = await payload.find({
         collection: "users",
-        overrideAccess:false,
+        overrideAccess: false,
         where: {
           email: {
             equals: email,
@@ -29,6 +31,7 @@ export const authRouter = router({
         data: {
           name,
           lastName,
+          // phone,
           email,
           password,
           role: "user",
@@ -79,5 +82,58 @@ export const authRouter = router({
           code: "UNAUTHORIZED",
         });
       }
+    }),
+
+    createEmailWaitList: publicProcedure
+    .input(EmailCredential)
+    .mutation(async ({ input }) => {
+      console.log("Inicio de la función createEmailWaitList");
+
+      const { email } = input;
+      console.log("Email recibido:", email);
+      
+      const payload = await getPayloadClient();
+      console.log("Cliente de payload obtenido");
+      
+      // Verificar si el correo ya está en la lista de espera
+      const { docs: waitlistEntries } = await payload.find({
+        collection: "waitlist",
+        where: {
+          email: {
+            equals: email,
+          },
+        },
+      });
+      console.log("Lista de espera verificada");
+      
+      console.log("Enviar correo electrónico");
+      await sendWaitlistEmail(email);
+      console.log("Correo electrónico enviado");
+      
+      if (waitlistEntries.length !== 0) {
+        throw new TRPCError({ code: "CONFLICT" });
+      }
+      
+      console.log("Momento de crear entrada en la lista de espera");
+      
+      // Agregar el correo electrónico a la lista de espera
+      await payload.create({
+        collection: "waitlist",
+        data: {
+          email,
+        },
+      });
+      
+      console.log("Entrada en la lista de espera creada correctamente");
+      
+      // Enviar correo electrónico de confirmación
+      console.log("Correo de confirmación enviado");
+      
+      console.log("Fin de la función createEmailWaitList");
+  
+      return {
+        success: true,
+        sentToEmail: email,
+      };
     }),
 });

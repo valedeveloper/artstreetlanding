@@ -1,12 +1,13 @@
 // import { LucideIcon } from "lucide-react";
-import { TQueryValidator } from "@/lib/queryValidator";
+import { TQueryValidator } from "@/lib/validators/queryValidator";
 import { Product } from "@/payload-types";
 import { InitOptions } from "payload/config";
 import { MouseEventHandler, ReactNode } from "react";
 export interface MenuItem {
   name?: string;
-  item: string;
+  item: string | ReactNode;
   href: string;
+  onClick?:()=>void
 }
 // export interface Product {
 //   product: {
@@ -31,12 +32,18 @@ export interface ProductListing{
   product:Product | null,
   index:number
 }
+export interface ImageSlider{
+  urls:string[]
+}
 
 export interface PropsCallAction {
   href?: string;
   title: string;
   className?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+}
+export interface ImageSliderProps {
+  urls: string[];
 }
 
 export interface WidthWrapper {

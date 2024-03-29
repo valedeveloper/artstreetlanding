@@ -12,7 +12,15 @@ import Link from "next/link";
 import Cart from "./Cart";
 import { scrollToSection } from "@/utilities/scrollToSection";
 import { useAuth } from "@/hooks/useAuth";
+import { MenuItem } from "../../types/types";
 
+function ItemNav({ href, item,onClick }: MenuItem) {
+  return (
+    <Link href={href} onClick={onClick}>
+      <li className="item-hover">{item}</li>
+    </Link>
+  );
+}
 function NavBar() {
   // const nextCookies = cookies();
   // const { user } = await getServerSideUser(nextCookies);
@@ -49,14 +57,14 @@ function NavBar() {
                 color="black"
                 className="item-hover md:hidden  "
               />
-              {
+              
                 <li
                   onClick={() => scrollToSection("intro")}
                   className=" hidden md:visible"
                 >
                   ¿Qué es Art Street?
                 </li>
-              }
+              
               <Link href={"/"}>
                 <Image
                   src={"/assets/images/LogoArtStreetTransparente.png"}
@@ -79,10 +87,8 @@ function NavBar() {
                   Lista de Espera
                 </Link>
 
-                {itemsMenu.map((item) => (
-                  <Link key={item.name} href={item.href}>
-                    <li className="item-hover ">{item.item}</li>
-                  </Link>
+                {itemsMenu.filter((item) => item.name !== "Lista de Espera").map((item) => (
+                  <ItemNav href={item.href} key={item.name} item={item.item} />
                 ))}
                 <FaShoppingCart
                   className="item-hover"
@@ -104,15 +110,11 @@ function NavBar() {
                         Inicio
                       </li>
                     </Link>
-                   
+
                     {itemsMenu
                       .filter((item) => item.href !== "/cart")
                       .map((item) => (
-                        <Link key={item.href} href={item.href}>
-                          <li className="item-nav" onClick={onCloseMenu}>
-                            {item.name}
-                          </li>
-                        </Link>
+                        <ItemNav href={item.href} key={item.name} item={item.name} onClick={onCloseMenu} />
                       ))}
                     {/* {user ? <p>Ingresar</p> : null} */}
                   </ul>

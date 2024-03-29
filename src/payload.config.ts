@@ -9,6 +9,7 @@ import path from "path";
 import dotenv from "dotenv";
 import { ProductFile } from "./collections/ProductFile";
 import { Orders } from "./collections/Orders";
+import { Waitlist } from "./collections/WaitList";
 
 dotenv.config({
   path: path.resolve(__dirname, "../.env"),
@@ -16,7 +17,7 @@ dotenv.config({
 //El payload sirve para la parte de admin
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || "", // Es la url base del servidor de la app
-  collections: [Users, Products, Media,ProductFile,Orders],
+  collections: [Users, Products, Media,ProductFile,Orders,Waitlist],
   routes: {
     admin: "/sell", //En esta ruta está la interfaz de administración, es decir, donde se pueden gestionar la bd o config de la app
   },

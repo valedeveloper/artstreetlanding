@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import {
   AuthCredentialsLogin,
   TAuthCredentialsLogin,
-} from "../../../lib/credentialsValidator";
+} from "../../../lib/validators/credentialsValidator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { trpc } from "@/trpc/client";
 import Link from "next/link";
@@ -19,6 +19,7 @@ function PageSignIn(): JSX.Element {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm<TAuthCredentialsLogin>({
     resolver: zodResolver(AuthCredentialsLogin),
   });
@@ -50,9 +51,10 @@ function PageSignIn(): JSX.Element {
       toast.error("Algo salió mal, Por favor intente de nuevo");
     },
   });
-  const onSubmit = ({ email, password }: TAuthCredentialsLogin) => {
+  const onSubmit = async ({ email, password }: TAuthCredentialsLogin) => {
     console.log("Submit");
-    signInUser({ email, password });
+    await signInUser({ email, password });
+    reset()
   };
 
   return (
@@ -65,7 +67,7 @@ function PageSignIn(): JSX.Element {
           className=" mx-auto w-full flex flex-col gap-y-6 items-center "
           onSubmit={handleSubmit(onSubmit)}
         >
-          <input
+          {/* <input
             placeholder="Correo electrónico"
             className=" p-4 border-1 border-white w-full bg-transparent "
             {...register("email")}
@@ -91,26 +93,47 @@ function PageSignIn(): JSX.Element {
             <p className=" self-start  text-sm text-red-500">
               {errors.password.message}
             </p>
-          )}
+          )} */}
+
+          <div className="relative w-full">
+            <input
+              className="inputs"
+              {...register("email")}
+              type="email"
+              required
+            />
+            <label htmlFor="email" className="labelInput">
+              Correo electrónico
+            </label>
+            {errors?.email?.message && (
+              <p className="self-start text-sm text-red-500">
+                {errors.email.message}
+              </p>
+            )}
+          </div>
+
+          <div className="relative w-full">
+            <input
+              className="inputs"
+              {...register("password")}
+              type="password"
+              required
+            />
+            <label htmlFor="password" className="labelInput">
+              Contraseña
+            </label>
+            {errors?.password?.message && (
+              <p className="self-start text-sm text-red-500">
+                {errors.password.message}
+              </p>
+            )}
+          </div>
 
           <button className=" button-call p-3 bg-primaryYelow text-black w-full lg:w-max hover:bg-yellow-500">
             Ingresar
           </button>
         </form>
-        <div className=" w-full relative">
-          <div className=" absolute inset-0 flex items-center">
-            <span className="w-full border-t"></span>
-          </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground">
-              {" "}
-              or{" "}
-            </span>
-          </div>
-        </div>
-        <button className=" p-3 rounded-full bg-transparent border-2 border-primaryYelow text-primaryYelow w-full lg:w-max  md:w-max hover:bg-primaryYelow hover:text-black   ">
-          ¿Eres artista?
-        </button>
+
         <p>
           ¿No tiene cuenta?
           <Link href={"/signup"} className="links">

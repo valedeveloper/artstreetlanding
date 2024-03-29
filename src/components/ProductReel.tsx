@@ -8,27 +8,26 @@ import ProductListing from "./ProductListing";
 
 const FALLBACK_LIMIT = 4;
 function ProductReel({ title, subtitle, href, query }: ProductReelProps) {
-  // const { data: queryResults, isLoading } =
-  //   trpc.getInfiniteProducts.useInfiniteQuery(
-  //     {
-  //       limit: query.limit ?? FALLBACK_LIMIT,
-  //       query,
-  //     },
-  //     {
-  //       getNextPageParam: (lastPage) => lastPage.nextPage,
-  //     }
-  //   );
-  // const products = queryResults?.pages.flatMap((page) => page.items);
+  const { data: queryResults, isLoading } =
+    trpc.getInfiniteProducts.useInfiniteQuery(
+      {
+        limit: query.limit ?? FALLBACK_LIMIT,
+        query,
+      },
+      {
+        getNextPageParam: (lastPage) => lastPage.nextPage,
+      }
+    );
 
-  // let mapProducts: (Product | null)[] = [];
-  // if (products && products.length) {
-  //   mapProducts = products;
-  // } else if (isLoading) {
-  //   mapProducts = new Array<null>(query.limit ?? FALLBACK_LIMIT).fill(null);
-  // }
-
+  const products = queryResults?.pages.flatMap((page) => page.items);
+  let mapProducts: (Product | null)[] = [];
+  if (products && products.length) {
+    mapProducts = products;
+  } else if (isLoading) {
+    mapProducts = new Array<null>(query.limit ?? FALLBACK_LIMIT).fill(null);
+  }
   return (
-    <section className=" py-12">
+    <section className=" py-12 w-full h-full">
       <div className="md:flex md:items-center md:justify-between mb-4">
         <div className="max-w-2xl px-4 lg:max-w-4xl lg:px-0">
           {title ? (
@@ -41,20 +40,14 @@ function ProductReel({ title, subtitle, href, query }: ProductReelProps) {
           ) : null}
         </div>
 
-        {href ? (
-          <Link
-            href={href}
-            className="hidden text-sm font-medium  text-primaryYelow hover:text-yellow-600 md:block"
-          >
-            Compra la nueva colección
-            <span aria-hidden="true">&rarr;</span>
-          </Link>
-        ) : null}
+
       </div>
       <div className="relative">
         <div className="mt-6 flex items-center w-full">
           <div className="w-full grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-10 lg:gap-x-8">
-           
+            {mapProducts.map((product, i) => (
+              <ProductListing key={i} product={product} index={i} />
+            ))}
           </div>
         </div>
       </div>

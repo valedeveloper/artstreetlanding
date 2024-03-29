@@ -44,12 +44,11 @@ export const Users: CollectionConfig = {
       type: "text",
       required: true,
     },
-    //  {
-    //      name: "phone",
-    //      label: "Teléfono",
-    //      type: "number",
-    //      required: true
-    //  },
+    // {
+    //   name: "phone",
+    //   label: "Teléfono",
+    //   type: "number",
+    // },
 
     {
       name: "role",

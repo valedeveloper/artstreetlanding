@@ -19,3 +19,21 @@
 .links{
     @apply text-primaryYelow
 }
+.inputs{
+    @apply bg-primaryBlack block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primaryYelow focus:text-white
+}
+.labelInput{
+    @apply  bg-primaryBlack absolute top-0 left-4 -mt-2 px-1 text-xs text-white 
+}
+.swiper-pagination-bullet {
+    width: 7px !important;
+    height: 7px !important;
+    background: rgba(250, 205, 49, 0.2);
+    scale: 0.9 !important;
+  }
+  
+  .swiper-pagination-bullet-active {
+    color: #fff;
+    background: rgb(250, 205, 49) !important;
+    scale: 1 !important 
+}
