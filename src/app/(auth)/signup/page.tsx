@@ -61,6 +61,7 @@ function PageSignUp(): JSX.Element {
 
   return (
     <div className="bg-primaryBlack  p-10 text-white flex flex-col gap-y-10 items-center">
+
       <h1 className="text-2xl border-b-1 border-white self-start w-full py-2 ">
         Crear cuenta
       </h1>
@@ -72,7 +73,8 @@ function PageSignUp(): JSX.Element {
         <form
           className=" mx-auto w-full flex flex-col gap-y-6 items-center "
           onSubmit={handleSubmit(onSubmit)}
-        >
+          >
+          {isLoading ? toast.warning("Espere un momento") : null}
           <div className="relative w-full">
             <input
               className="inputs"

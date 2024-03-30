@@ -51,7 +51,16 @@ export interface Product {
   name: string;
   description?: string | null;
   price: number;
-  category: 'T-Shirt' | 'Mugs' | 'Hoodies';
+  category:
+    | 'T-Shirt'
+    | 'Mugs'
+    | 'Hoodies'
+    | 'Medias'
+    | 'Oversize'
+    | 'Sweatshirt'
+    | 'Calcomanias'
+    | 'Bags'
+    | 'Phone Cases';
   product_files: string | ProductFile;
   approvedForSale?: ('pending' | 'approved' | 'denied') | null;
   priceId?: string | null;

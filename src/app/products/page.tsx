@@ -38,7 +38,7 @@ function ProductsPage(): JSX.Element {
         <ProductReel
           query={{
             sort: "desc",
-            limit: 4,
+            limit: 10,
           }}
           title="Categorías Nuevas"
        

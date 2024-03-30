@@ -21,7 +21,7 @@ const FeaturesSection = () => {
     <div className="bg-gray-100 py-12">
       <div className="container mx-auto">
         <h2 className="title text-center pb-5">Descubre el Verdadero Arte</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center place-items-start ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center  place-items-center lg:place-items-start ">
           <FeatureCard
             icon={<CiStreamOn className="text-6xl text-purple-600" />}
             title="Transmisiones en Vivo"

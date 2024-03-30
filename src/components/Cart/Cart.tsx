@@ -46,7 +46,8 @@ function Cart({ onCloseCart }: CartProps): JSX.Element {
               <CallToAction
                 title="Continuar el pago"
                 className="button-call bg-primaryYelow w-full hover:bg-yellow-500  p-3"
-
+                href="/checkout"
+                onClick={onCloseCart}
               />
             </>
           ) : (

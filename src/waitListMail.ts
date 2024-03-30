@@ -20,7 +20,7 @@ export const sendWaitlistEmail = async (recipientEmail:string) => {
   try {
     await waitlistTransporter.sendMail({
       from: 'onboarding@resend.dev',
-      to: recipientEmail,
+      to: "artstreetcol@gmail.com",
       subject: "¡Gracias por unirte a la lista de espera!",
       html: `<p>Hola,</p>
             <p>Gracias por unirte a nuestra lista de espera. Te mantendremos informado sobre las últimas actualizaciones y novedades.</p>

@@ -13,8 +13,9 @@ import Cart from "./Cart/Cart";
 import { scrollToSection } from "@/utilities/scrollToSection";
 import { useAuth } from "@/hooks/useAuth";
 import { MenuItem } from "../../types/types";
+import { useCart } from "@/hooks/useCart";
 
-function ItemNav({ href, item,onClick }: MenuItem) {
+function ItemNav({ href, item, onClick }: MenuItem) {
   return (
     <Link href={href} onClick={onClick}>
       <li className="item-hover ">{item}</li>
@@ -26,7 +27,9 @@ function NavBar() {
   // const { user } = await getServerSideUser(nextCookies);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isOpenCart, setIsOpenCart] = useState(false);
+  const { items } = useCart();
 
+  const cartItemCount = items.length;
   const onToggleCart = () => {
     setIsOpenCart((prev) => !prev);
   };
@@ -57,14 +60,14 @@ function NavBar() {
                 color="black"
                 className="item-hover md:hidden  "
               />
-              
-                <li
-                  onClick={() => scrollToSection("intro")}
-                  className=" hidden md:visible"
-                >
-                  ¿Qué es Art Street?
-                </li>
-              
+
+              <li
+                onClick={() => scrollToSection("intro")}
+                className=" hidden md:visible"
+              >
+                ¿Qué es Art Street?
+              </li>
+
               <Link href={"/"}>
                 <Image
                   src={"/assets/images/LogoArtStreetTransparente.png"}
@@ -73,28 +76,43 @@ function NavBar() {
                   alt="Logo art street"
                 />
               </Link>
-              <FaShoppingCart
-                size={20}
-                className="item-hover md:hidden"
-                onClick={onToggleCart}
-              />
+              
 
               <ul className="md:flex md:gap-5 md:items-center hidden">
-                <Link href={"/"}
+                <Link
+                  href={"/"}
                   className=" cursor-pointer item-hover"
                   onClick={() => scrollToSection("wait-list")}
                 >
                   Lista de Espera
                 </Link>
 
-                {itemsMenu.filter((item) => item.name !== "Lista de Espera").map((item) => (
-                  <ItemNav href={item.href} key={item.name} item={item.item} />
-                ))}
-                <FaShoppingCart
-                  className="item-hover"
-                  onClick={onToggleCart}
-                  size={20}
-                />
+                {itemsMenu
+                  .filter((item) => item.name !== "Lista de Espera")
+                  .map((item) => (
+                    <ItemNav
+                      href={item.href}
+                      key={item.name}
+                      item={item.item}
+                    />
+                  ))}
+                <div className="relative">
+                  {/* Icono del carrito de compras */}
+                  <FaShoppingCart
+                    size={20}
+                    className="hiden  md:visible item-hover "
+                    onClick={onToggleCart}
+                  />
+                  {/* Contador de cantidad de productos */}
+                  {cartItemCount > 0 && (
+                    <div
+                      className="absolute top-0 right-0 bg-primaryYelow rounded-full w-4 h-4 flex items-center justify-center text-black text-xs"
+                      style={{ marginTop: "-6px", marginRight: "-6px" }}
+                    >
+                      {cartItemCount}
+                    </div>
+                  )}
+                </div>
               </ul>
 
               {isOpenMenu && (
@@ -114,7 +132,12 @@ function NavBar() {
                     {itemsMenu
                       .filter((item) => item.href !== "/cart")
                       .map((item) => (
-                        <ItemNav href={item.href} key={item.name} item={item.name} onClick={onCloseMenu} />
+                        <ItemNav
+                          href={item.href}
+                          key={item.name}
+                          item={item.name}
+                          onClick={onCloseMenu}
+                        />
                       ))}
                     {/* {user ? <p>Ingresar</p> : null} */}
                   </ul>

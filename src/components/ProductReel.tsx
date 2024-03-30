@@ -43,7 +43,7 @@ function ProductReel({ title, subtitle, href, query }: ProductReelProps) {
         {href ? (
           <Link
             href={href}
-            className='hidden text-sm font-medium text-primaryYelow hover:text-yelow-800 md:block'>
+            className='hidden text-md font-medium text-primaryYelow hover:text-yelow-800 md:block'>
             Compra Aquí{' '}
             <span aria-hidden='true'>&rarr;</span>
           </Link>
@@ -53,7 +53,7 @@ function ProductReel({ title, subtitle, href, query }: ProductReelProps) {
       </div>
       <div className="relative">
         <div className="mt-6 flex items-center w-full">
-          <div className="w-full grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-10 lg:gap-x-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center ">
             {mapProducts.map((product, i) => (
               <ProductListing key={i} product={product} index={i} />
             ))}

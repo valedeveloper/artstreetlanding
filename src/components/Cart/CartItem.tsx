@@ -44,7 +44,7 @@ function CartItem({product}:{product:Product}) {
                     onClick={() => removeItem(product.id)}
                     className='flex items-center gap-0.5 text-red-600'>
                     <IoClose className='w-3 h-4' />
-                    Remove
+                    Eliminar del Carrito
                   </button>
                 </div>
               </div>

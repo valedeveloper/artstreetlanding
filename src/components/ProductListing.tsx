@@ -37,10 +37,10 @@ function ProductListing({ product, index }: ProductListing) {
 
 function ProductPlaceholder() {
     return (
-        <div className='flex flex-col w-full' >
-            <div className={"relative bg-zinc-100 aspect-square w-fulll overflow-hidden rounded-xl"}>
+        <div className=' flex flex-col w-full' >
+            {/* <div className={"relative bg-zinc-100 aspect-square w-fulll overflow-hidden rounded-xl"}>
                 <CardSkeleton />
-            </div>
+            </div> */}
             <CardSkeleton />
             <CardSkeleton />
             <CardSkeleton />
