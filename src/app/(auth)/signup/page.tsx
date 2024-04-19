@@ -173,7 +173,7 @@ function PageSignUp(): JSX.Element {
         </div>
 
         <p>
-          ¿Ya tienes cuenta{" "}
+          ¿Ya tienes cuenta?
           <Link href={"/signin"} className="links">
             Inicia sesión
           </Link>

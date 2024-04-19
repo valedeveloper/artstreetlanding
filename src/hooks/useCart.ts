@@ -20,7 +20,7 @@ type CartState = {
 export const useCart = create<CartState>()(
   persist(
     (set) => ({
-      items: JSON.parse(window.localStorage.getItem("cart"))  || [],
+      items: [],
       addItem: (product) =>
         set((state) => {
           // Agregar el nuevo item al estado

@@ -23,6 +23,9 @@ const config: Config = {
       },
       borderWidth: {
         1:'1px'
+      },
+      height:{
+        100:"35rem"
       }
     },
   },

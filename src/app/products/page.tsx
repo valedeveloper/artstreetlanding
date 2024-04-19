@@ -7,8 +7,8 @@ import ProductReel from "../../components/ProductReel";
 
 function ProductsPage(): JSX.Element {
   return (
-    <section className="border border-gray-200 bg-gray-80 my-12 ">
-      <MaxWidthWrapper className="py-20 flex flex-col lg:flex-row gap-10">
+    <section className="bg-gray-80  ">
+      <MaxWidthWrapper className=" flex flex-col lg:flex-row gap-10">
         {/* Left Bar
         <div className="lg:w-1/4 lg:flex-none">
           <div className="mb-8">

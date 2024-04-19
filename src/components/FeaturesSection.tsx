@@ -7,7 +7,7 @@ import { LuStore } from "react-icons/lu";
 const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) => {
   return (
     <div className="flex flex-col items-center justify-center p-4">
-      <div className="flex items-center justify-center w-12 h-12 mb-4 bg-gray-100 rounded-full">
+      <div className="flex items-center justify-center w-12 h-12 mb-4  rounded-full">
         {icon}
       </div>
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
@@ -18,9 +18,9 @@ const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode; titl
 
 const FeaturesSection = () => {
   return (
-    <div className="bg-gray-100 py-12">
+    <div className=" p-24">
       <div className="container mx-auto">
-        <h2 className="title text-center pb-5">Descubre el Verdadero Arte</h2>
+        <h2 className="title text-center pb-5">Descubre el verdadero Arte</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center  place-items-center lg:place-items-start ">
           <FeatureCard
             icon={<CiStreamOn className="text-6xl text-purple-600" />}

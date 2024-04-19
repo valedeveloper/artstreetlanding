@@ -1,4 +1,4 @@
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 import { toast } from "sonner"
 
 export const useAuth = () => {
@@ -15,6 +15,7 @@ export const useAuth = () => {
             if (!res.ok) throw new Error()
             toast.success("Sesión cerrada con éxito")
             router.push("/signin")
+            router.refresh()
         } catch (error) {
             toast.error("No se ha podido cerrar sesión, intente de nuevo")
         }

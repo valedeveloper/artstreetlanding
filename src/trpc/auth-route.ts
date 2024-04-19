@@ -86,13 +86,10 @@ export const authRouter = router({
   createEmailWaitList: publicProcedure
     .input(EmailCredential)
     .mutation(async ({ input }) => {
-      console.log("Inicio de la función createEmailWaitList");
 
       const { email } = input;
-      console.log("Email recibido:", email);
 
       const payload = await getPayloadClient();
-      console.log("Cliente de payload obtenido");
 
       // Verificar si el correo ya está en la lista de espera
       const { docs: waitlistEntries } = await payload.find({
@@ -103,13 +100,11 @@ export const authRouter = router({
           },
         },
       });
-      console.log("Lista de espera verificada");
 
       if (waitlistEntries.length !== 0) {
         throw new TRPCError({ code: "CONFLICT" });
       }
 
-      console.log("Momento de crear entrada en la lista de espera");
 
       // Agregar el correo electrónico a la lista de espera
       await payload.create({
@@ -120,15 +115,10 @@ export const authRouter = router({
       });
 
 
-      console.log("Enviar correo electrónico");
       await sendWaitlistEmail(email);
-      console.log("Correo electrónico enviado");
-      console.log("Entrada en la lista de espera creada correctamente");
 
       // Enviar correo electrónico de confirmación
-      console.log("Correo de confirmación enviado");
 
-      console.log("Fin de la función createEmailWaitList");
 
       return {
         success: true,

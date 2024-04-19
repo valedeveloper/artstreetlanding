@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,7 +8,6 @@ import type SwiperType from "swiper";
 import { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
 import { ImageSliderProps } from "../../types/types";
-
 
 const ImageSlider = ({ urls }: ImageSliderProps) => {
   const [swiper, setSwiper] = useState<null | SwiperType>(null);
@@ -77,8 +76,11 @@ const ImageSlider = ({ urls }: ImageSliderProps) => {
         {urls.map((url, i) => (
           <SwiperSlide key={i} className="-z-10 relative h-full w-full">
             <Image
-              fill
+              priority
+              style={{ width: "100%", height: "100%" }}
               loading="eager"
+              width={500}
+              height={500}
               className="-z-10 h-full w-full object-cover object-center"
               src={url}
               alt="Product image"

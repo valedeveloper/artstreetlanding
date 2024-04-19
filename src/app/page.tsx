@@ -11,16 +11,19 @@ import FeaturesSection from "@/components/FeaturesSection";
 function HomePage(): JSX.Element {
   return (
     <>
-      <div className="h-screen relative overflow-hidden">
+      <div className=" relative overflow-hidden h-100">
         <Image
-          src={"/assets/gif/artist.gif"}
-          className="opacity-85"
-          layout="fill"
-          objectFit="cover"
+          className=" opacity-75"
+          loading="eager"
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          src={"/assets/gif/artist2.gif"}
           alt="Artista"
+          width={500}
+          height={500}
         />
+
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <h1 className="pb-3 text-5xl font-bold border-b-2 border-gray-400  shadow-md  lg:6xl relative z-10">
+          <h1 className=" text-5xl font-bold border-b-2 border-gray-400  shadow-md  lg:6xl relative z-10">
             Si la Calle es el escenario
           </h1>
           <CallToAction
@@ -42,7 +45,7 @@ function HomePage(): JSX.Element {
           limit: 4,
         }}
       />
-        <AppInfo />
+      <AppInfo />
     </>
   );
 }

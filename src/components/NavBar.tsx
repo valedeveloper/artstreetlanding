@@ -60,35 +60,30 @@ function NavBar() {
                 color="black"
                 className="item-hover md:hidden  "
               />
-
-              <li
-                onClick={() => scrollToSection("intro")}
-                className=" hidden md:visible"
-              >
-                ¿Qué es Art Street?
-              </li>
-
               <Link href={"/"}>
                 <Image
                   src={"/assets/images/LogoArtStreetTransparente.png"}
                   width={80}
                   height={80}
                   alt="Logo art street"
+                  priority
                 />
               </Link>
-              
 
               <ul className="md:flex md:gap-5 md:items-center hidden">
-                <Link
+                {/* <Link
                   href={"/"}
                   className=" cursor-pointer item-hover"
                   onClick={() => scrollToSection("wait-list")}
                 >
                   Lista de Espera
-                </Link>
+                </Link> */}
 
                 {itemsMenu
-                  .filter((item) => item.name !== "Lista de Espera")
+                  .filter(
+                    (item) =>
+                      item.name !== "Lista de Espera" && item.name !== "Store"
+                  )
                   .map((item) => (
                     <ItemNav
                       href={item.href}
@@ -100,7 +95,7 @@ function NavBar() {
                   {/* Icono del carrito de compras */}
                   <FaShoppingCart
                     size={20}
-                    className="hiden  md:visible item-hover "
+                    className="item-hover "
                     onClick={onToggleCart}
                   />
                   {/* Contador de cantidad de productos */}
@@ -114,6 +109,24 @@ function NavBar() {
                   )}
                 </div>
               </ul>
+
+              <div className="relative visible md:hidden">
+                {/* Icono del carrito de compras */}
+                <FaShoppingCart
+                  size={20}
+                  className=" item-hover "
+                  onClick={onToggleCart}
+                />
+                {/* Contador de cantidad de productos */}
+                {cartItemCount > 0 && (
+                  <div
+                    className="absolute top-0 right-0 bg-primaryYelow rounded-full w-4 h-4 flex items-center justify-center text-black text-xs"
+                    style={{ marginTop: "-6px", marginRight: "-6px" }}
+                  >
+                    {cartItemCount}
+                  </div>
+                )}
+              </div>
 
               {isOpenMenu && (
                 <div className="fixed inset-0 bg-black bg-opacity-95 z-20 flex justify-center items-center transition-opacity duration-500">
