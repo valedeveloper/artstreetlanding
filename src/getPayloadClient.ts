@@ -33,6 +33,8 @@ if (!cached) {
 export const getPayloadClient = async ({
   initialOptions,
 }: Args = {}): Promise<Payload> => {
+  console.log(process.env.PAYLOAD_SECRET,"el payload secret");
+  
   if (!process.env.PAYLOAD_SECRET) {
     throw new Error("OMGGG, no está el PAYLOAD_SECRET");
   }

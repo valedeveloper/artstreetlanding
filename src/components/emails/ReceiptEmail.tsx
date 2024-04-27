@@ -38,14 +38,14 @@ export const ReceiptEmail = ({
       <Body style={main}>
         <Container style={container}>
           <Section>
-            {/* <Column>
+            <Column>
               <Img
-                src={`${process.env.NEXT_PUBLIC_SERVER_URL}/hippo-email-sent.png`}
+                src={`${process.env.NEXT_PUBLIC_SERVER_URL}/assets/images/LogoArtStreetTransparente.png`}
                 width='100'
                 height='100'
-                alt='DigitalHippo'
+                alt='Art Street Logo'
               />
-            </Column> */}
+            </Column> 
 
             <Column align='right' style={tableCell}>
               <Text style={heading}>Recibido</Text>

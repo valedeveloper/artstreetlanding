@@ -31,13 +31,15 @@ function PageSignIn(): JSX.Element {
   } = trpc.auth.signInUser.useMutation({
     onSuccess: () => {
       toast.success(`Ha ingresado a su cuenta con éxito`);
-      router.refresh();
+      router.push('/')
 
       if (origin) {
-        router.push(`/${origin}`);
-        return;
+        router.push(`/${origin}`)
+        return
       }
-      router.push("/");
+      router.refresh()
+
+
     },
     onError: (err) => {
       if (err.data?.code === "UNAUTHORIZED") {
@@ -67,34 +69,6 @@ function PageSignIn(): JSX.Element {
           className=" mx-auto w-full flex flex-col gap-y-6 items-center "
           onSubmit={handleSubmit(onSubmit)}
         >
-          {/* <input
-            placeholder="Correo electrónico"
-            className=" p-4 border-1 border-white w-full bg-transparent "
-            {...register("email")}
-            type="email"
-            required
-          />
-          {errors?.email?.message && (
-            <p className=" self-start text-sm text-red-500">
-              {errors.email.message}
-            </p>
-          )}
-          <input
-            placeholder="Constraseña"
-            className={
-              "p-4 border-1 border-white w-full bg-transparent " +
-              (errors.email ? " focus-visible:ring-red-500" : null)
-            }
-            {...register("password")}
-            type="password"
-            required
-          />
-          {errors?.password?.message && (
-            <p className=" self-start  text-sm text-red-500">
-              {errors.password.message}
-            </p>
-          )} */}
-
           <div className="relative w-full">
             <input
               className="inputs"
@@ -102,7 +76,10 @@ function PageSignIn(): JSX.Element {
               type="email"
               required
             />
-            <label htmlFor="email" className="labelInput">
+            <label
+              htmlFor="email"
+              className="labelInput absolute top-2 left-2 transition-all duration-300 text-white pointer-events-none"
+            >
               Correo electrónico
             </label>
             {errors?.email?.message && (
@@ -119,7 +96,10 @@ function PageSignIn(): JSX.Element {
               type="password"
               required
             />
-            <label htmlFor="password" className="labelInput">
+            <label
+              htmlFor="password"
+              className="labelInput absolute top-2 left-2 transition-all duration-300 text-white pointer-events-none"
+            >
               Contraseña
             </label>
             {errors?.password?.message && (
@@ -128,6 +108,7 @@ function PageSignIn(): JSX.Element {
               </p>
             )}
           </div>
+
 
           <button className=" button-call p-3 bg-primaryYelow text-black w-full lg:w-max hover:bg-yellow-500">
             Ingresar

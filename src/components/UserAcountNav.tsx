@@ -13,13 +13,13 @@ const UserAccountNav = ({ user }: NavItemsProps) => {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
-   
+  
 
     return (
         <div className="relative">
             <button
                 onClick={toggleMenu}
-                className=" px-2 py-1 rounded  item-hover text-primaryYelow  "
+                className="item-hover "
             >
                 Mi Cuenta
             </button>

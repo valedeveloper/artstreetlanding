@@ -14,6 +14,7 @@ import { MenuItem, NavItemsProps } from "../../types/types";
 import { User } from "@/payload-types";
 import Cart from "./Cart/Cart";
 import UserAccountNav from "./UserAcountNav";
+import { scrollToSection } from "@/utilities/scrollToSection";
 
 function ItemNav({ href, item, onClick }: MenuItem) {
   return (
@@ -69,15 +70,16 @@ function NavBarItems({ user }: NavItemsProps) {
                   priority
                 />
               </Link>
+              {/*Menu Max */}
 
               <ul className="md:flex md:gap-5 md:items-center hidden">
-                {/* <Link
-                    href={"/"}
-                    className=" cursor-pointer item-hover"
-                    onClick={() => scrollToSection("wait-list")}
-                    >
-                    Lista de Espera
-                    </Link> */}
+                <Link
+                  href={"/"}
+                  className=" cursor-pointer item-hover"
+                  onClick={() => scrollToSection("wait-list")}
+                >
+                  Lista de Espera
+                </Link>
 
                 {itemsMenu
                   .filter(
@@ -117,24 +119,34 @@ function NavBarItems({ user }: NavItemsProps) {
                 </div>
               </ul>
 
-              <div className="relative visible md:hidden">
-                {/* Icono del carrito de compras */}
-                <FaShoppingCart
-                  size={20}
-                  className=" item-hover "
-                  onClick={onToggleCart}
-                />
-                {/* Contador de cantidad de productos */}
-                {cartItemCount > 0 && (
-                  <div
-                    className="absolute top-0 right-0 bg-primaryYelow rounded-full w-4 h-4 flex items-center justify-center text-black text-xs"
-                    style={{ marginTop: "-6px", marginRight: "-6px" }}
-                  >
-                    {cartItemCount}
-                  </div>
+              <div className=" flex items-center gap-3  md:hidden">
+                {user ? (
+                  <UserAccountNav user={user} />
+                ) : (
+                  <Link href={"/signup"}>
+                    <FaUser size={20} className=" item-hover" />
+                  </Link>
                 )}
+                <div className="relative ">
+                  {/* Icono del carrito de compras */}
+                  <FaShoppingCart
+                    size={20}
+                    className=" item-hover "
+                    onClick={onToggleCart}
+                  />
+                  {/* Contador de cantidad de productos */}
+                  {cartItemCount > 0 && (
+                    <div
+                      className="absolute top-0 right-0 bg-primaryYelow rounded-full w-4 h-4 flex items-center justify-center text-black text-xs"
+                      style={{ marginTop: "-6px", marginRight: "-6px" }}
+                    >
+                      {cartItemCount}
+                    </div>
+                  )}
+                </div>
               </div>
 
+              {/*Menu Mobile */}
               {isOpenMenu && (
                 <div className="fixed inset-0 bg-black bg-opacity-95 z-20 flex justify-center items-center transition-opacity duration-500">
                   <ul className="text-white text-center w-screen flex justify-center flex-col items-center text-2xl transition-opacity duration-500 gap-5">
@@ -162,13 +174,6 @@ function NavBarItems({ user }: NavItemsProps) {
                           onClick={onCloseMenu}
                         />
                       ))}
-                    {user ? (
-                      <UserAccountNav user={user} />
-                    ) : (
-                      <Link href={"/signup"} className=" item-hover ">
-                        Iniciar Sesión
-                      </Link>
-                    )}
                   </ul>
                 </div>
               )}

@@ -4,6 +4,7 @@ import { cookies, headers } from "next/headers";
 import { NextRequest } from "next/server";
 
 export const getServerSideUser = async (
+  
   cookies: NextRequest["cookies"] | ReadonlyRequestCookies
 ) => {
   const token = cookies.get("payload-token")?.value;
@@ -18,5 +19,6 @@ export const getServerSideUser = async (
   const { user } = (await meRes.json()) as {
     user: User | null;
   };
+  
   return { user };
 };

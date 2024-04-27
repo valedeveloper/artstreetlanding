@@ -7,11 +7,12 @@
     "generate:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
     "build:payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload build",
     "build:server": "tsc --project tsconfig.server.json",
-    "build:next": "cross-env PAYLOAD_CONFIG_PATH=dist/payload.config.js NEXT_BUILD=true node dist/server.js",
+    "build:next": "cross-env \"MONGODB_URL=mongodb+srv://valedev:valedev123@cluster0.ytvwdeg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0\" PAYLOAD_CONFIG_PATH=dist/src/payload.config.js PAYLOAD_SECRET=mySecret123 RESEND_APY_KEY=re_c2LD2CH5_6UTNZw9C3XtU78D9KumFFUy8 WAITLIST_API_KEY=re_c2LYmXzp_BaWSTCUvGKP8MZWot3w916hX NEXT_BUILD=true node dist/src/server.js",
     "build": "cross-env NODE_ENV=production yarn build:payload && yarn build:server && yarn copyfiles && yarn build:next",
     "start": "cross-env PAYLOAD_CONFIG_PATH=dist/payload.config.js NODE_ENV=production node dist/server.js",
     "copyfiles": "copyfiles -u 1 \"src/**/*.{html,css,scss,ttf,woff,woff2,eot,svg,jpg,png}\" dist/",
     "lint": "next lint"
+  
   
   },
   "dependencies": {
