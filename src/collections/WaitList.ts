@@ -3,7 +3,7 @@ import { CollectionConfig } from "payload/types";
 export const Waitlist: CollectionConfig = {
   slug: "waitlist",
   access: {
-    read: () => true,
+    read:({req})=>req.user.role==="admin",
     create: () => false,
     update:()=>false,
     delete:({req})=>req.user.role==="admin"

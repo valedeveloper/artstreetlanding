@@ -18,7 +18,7 @@ export const Orders: CollectionConfig = {
       'A summary of all your orders on DigitalHippo.',
   },
   access: {
-    read: yourOwn,
+    read: ({ req }) => req.user.role === 'admin' || req.user.role === 'sell' ,
     update: ({ req }) => req.user.role === 'admin',
     delete: ({ req }) => req.user.role === 'admin',
     create: ({ req }) => req.user.role === 'admin',

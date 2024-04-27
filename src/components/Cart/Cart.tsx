@@ -47,7 +47,7 @@ function Cart({ onCloseCart }: CartProps): JSX.Element {
                   <span>{formatPrice(subtotalCart)}</span>
                 </div>
               </ul>
-              <button onClick={onCloseCart} className='  button-call bg-primaryYelow  hover:bg-yellow-500  p-3 w-full'> <Link href={"/cart"}>Ver Pedido</Link></button>
+              <button onClick={onCloseCart} className='  button-call bg-primaryYelow  hover:bg-yellow-500  p-3 w-full'> <Link href={"/checkout"}>Ver Pedido</Link></button>
             
             </>
           ) : (

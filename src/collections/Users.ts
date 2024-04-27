@@ -1,6 +1,17 @@
 import { CollectionConfig } from "payload/types";
+import { Access } from 'payload/config'
+const yourOwn: Access = ({ req: { user } }) => {
+  if (user.role === 'user') return true
+
+  return {
+    user: {
+      equals: user?.id,
+    },
+  }
+}
 
 export const Users: CollectionConfig = {
+
   slug: "users",
   auth: {
     verify: {
@@ -28,8 +39,10 @@ export const Users: CollectionConfig = {
     },
   },
   access: {
+    create: ({ req }) => req.user.role === "admin",
+    update: yourOwn,
     read: () => true,
-    create: () => true,
+    delete: () => false
   },
   fields: [
     {
@@ -55,13 +68,13 @@ export const Users: CollectionConfig = {
       defaultValue: "user",
       required: true,
       type: "select",
-      // admin: {
-      //      condition: ((req) => req.user.role === "admin")
-      //     condition:()=>false
-      // },
+      access:{
+        update:({req})=>req.user.role==="admin"
+      },
       options: [
-        { label: "Admin", value: "admin" },
-        { label: "User", value: "user" },
+        { label: "Administrador", value: "admin" },
+        { label: "Vendedor", value: "sell" },
+        { label: "Usuario", value: "user" },
       ],
     },
   ],

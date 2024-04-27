@@ -1,12 +1,11 @@
 import dotenv from "dotenv"; //Para cargar variables de entorno
 import path from "path"; //Módulo de node js para manipular rutas de archivos
 import payload, { Payload } from "payload";
-import nodemailer from 'nodemailer'
+import nodemailer from "nodemailer";
 import { Args } from "../types/types";
 dotenv.config({
   path: path.resolve(__dirname, "../.env"), //El __diname se utiliza para traer la ruta del archiv actual
 });
-
 
 const transporter = nodemailer.createTransport({
   host: "smtp.resend.com",
@@ -14,9 +13,9 @@ const transporter = nodemailer.createTransport({
   port: 465,
   auth: {
     user: "resend",
-    pass: process.env.RESEND_APY_KEY
-  }
-})
+    pass: process.env.RESEND_APY_KEY,
+  },
+});
 
 //El objeto payload es algo que yo creo. La palabra cached significa "almacenado en caché
 //Aquí valido que hay allgo en cache, ya que vvoy acceder desde el objeto global al payload. Este últimoes algo que yo creo y se vallida que exista, de lo contrario lo creo yo
@@ -31,9 +30,11 @@ if (!cached) {
   };
 }
 
-export const getPayloadClient = async ({ initialOptions }: Args = {}): Promise<Payload> => {
+export const getPayloadClient = async ({
+  initialOptions,
+}: Args = {}): Promise<Payload> => {
   if (!process.env.PAYLOAD_SECRET) {
-    throw new Error("OMGGG, no está el PROCESSENVSECRET");
+    throw new Error("OMGGG, no está el PAYLOAD_SECRET");
   }
   if (cached.client) {
     return cached.client;
@@ -47,7 +48,7 @@ export const getPayloadClient = async ({ initialOptions }: Args = {}): Promise<P
       email: {
         transport: transporter,
         fromAddress: "onboarding@resend.dev",
-        fromName: "ArtStreet"
+        fromName: "ArtStreet",
       },
       secret: process.env.PAYLOAD_SECRET,
       local: initialOptions?.express ? false : true,

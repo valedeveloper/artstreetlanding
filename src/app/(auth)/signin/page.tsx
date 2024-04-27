@@ -30,7 +30,7 @@ function PageSignIn(): JSX.Element {
     isSuccess,
   } = trpc.auth.signInUser.useMutation({
     onSuccess: () => {
-      toast.success(`Logueado con éxito`);
+      toast.success(`Ha ingresado a su cuenta con éxito`);
       router.refresh();
 
       if (origin) {

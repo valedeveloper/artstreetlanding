@@ -27,7 +27,7 @@ export interface User {
   id: string;
   name: string;
   lastName: string;
-  role: 'admin' | 'user';
+  role: 'admin' | 'sell' | 'user';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -141,12 +141,6 @@ export interface Order {
   products: (string | Product)[];
   updatedAt: string;
   createdAt: string;
-  url?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -1,6 +1,6 @@
 import { Product } from '@/payload-types'
 import { create } from 'zustand'
-import { updateLocalStorage } from '../utilities/updateLocalStorage'
+import { getLocalStorage, updateLocalStorage } from '../utilities/updateLocalStorage'
 import {
   createJSONStorage,
   persist,
@@ -20,7 +20,7 @@ type CartState = {
 export const useCart = create<CartState>()(
   persist(
     (set) => ({
-      items: [],
+      items:[],
       addItem: (product) =>
         set((state) => {
           // Agregar el nuevo item al estado

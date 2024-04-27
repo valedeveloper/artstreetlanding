@@ -18,8 +18,8 @@ function HomePage(): JSX.Element {
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
           src={"/assets/gif/artist2.gif"}
           alt="Artista"
-          width={500}
-          height={500}
+          width={400}
+          height={400}
         />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center">

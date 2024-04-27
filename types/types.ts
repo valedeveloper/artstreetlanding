@@ -1,6 +1,6 @@
 // import { LucideIcon } from "lucide-react";
 import { TQueryValidator } from "@/lib/validators/queryValidator";
-import { Product } from "@/payload-types";
+import { Product, User } from "@/payload-types";
 import { InitOptions } from "payload/config";
 import { MouseEventHandler, ReactNode } from "react";
 export interface MenuItem {
@@ -90,3 +90,24 @@ export interface CartProduct {
   product: Product
 };
 
+export type ProductsCheckOut = {
+  items: CartItem[],
+  removeItem: (id:string) => void
+}
+
+export interface PaymentStatusProps {
+  orderEmail: string
+  orderId: string
+  isPaid: boolean
+}
+
+export interface ReceiptEmailProps {
+  email: string
+  date: Date
+  orderId: string
+  products: Product[]
+}
+
+export interface NavItemsProps{
+  user: User | null
+}
