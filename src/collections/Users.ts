@@ -55,7 +55,7 @@ export const Users: CollectionConfig = {
       name: "lastName",
       label: "Apellido",
       type: "text",
-      required: true,
+      required: true, 
     },
     // {
     //   name: "phone",
