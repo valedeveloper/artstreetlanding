@@ -31,7 +31,7 @@ exports.Users = {
             var req = _a.req;
             return req.user.role === "admin";
         },
-        update: yourOwn,
+        update: function () { return true; },
         read: function () { return true; },
         delete: function () { return false; }
     },

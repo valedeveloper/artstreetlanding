@@ -62,12 +62,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var trpcExpress = __importStar(require("@trpc/server/adapters/express"));
 var express_1 = __importDefault(require("express"));
+var path_1 = __importDefault(require("path"));
+var build_1 = __importDefault(require("next/dist/build"));
+var body_parser_1 = __importDefault(require("body-parser"));
 var getPayloadClient_1 = require("./getPayloadClient");
 var next_utils_1 = require("./next-utils");
-var trpcExpress = __importStar(require("@trpc/server/adapters/express"));
 var trpc_1 = require("./trpc");
-var body_parser_1 = __importDefault(require("body-parser"));
 var webhooks_1 = require("./webhooks");
 var app = (0, express_1.default)();
 var PORT = Number(process.env.PORT) || 3000;
@@ -102,15 +104,24 @@ var start = function () { return __awaiter(void 0, void 0, void 0, function () {
                     })];
             case 1:
                 payload = _a.sent();
-                // if (process.env.NEXT_BUILD) {
-                //   app.listen(PORT, async () => {
-                //     payload.logger.info("NextJs is building production");
-                //     //@ts-expect-error
-                //     await nextBuild(path.join(__dirname, "../"));
-                //     process.exit();
-                //   });
-                //   return;
-                // }
+                if (process.env.NEXT_BUILD) {
+                    app.listen(PORT, function () { return __awaiter(void 0, void 0, void 0, function () {
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    payload.logger.info("NextJs is building production");
+                                    //@ts-expect-error
+                                    return [4 /*yield*/, (0, build_1.default)(path_1.default.join(__dirname, "../"))];
+                                case 1:
+                                    //@ts-expect-error
+                                    _a.sent();
+                                    process.exit();
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); });
+                    return [2 /*return*/];
+                }
                 app.use("/api/trpc", trpcExpress.createExpressMiddleware({
                     router: trpc_1.appRouter,
                     createContext: createContext,

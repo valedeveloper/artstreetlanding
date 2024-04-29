@@ -1,7 +1,7 @@
 import { CollectionConfig } from "payload/types";
 import { Access } from 'payload/config'
 const yourOwn: Access = ({ req: { user } }) => {
-  if (user.role === 'user') return true
+  if (user.role === 'user' ) return true
 
   return {
     user: {
@@ -40,7 +40,7 @@ export const Users: CollectionConfig = {
   },
   access: {
     create: ({ req }) => req.user.role === "admin",
-    update: yourOwn,
+    update: () => true,
     read: () => true,
     delete: () => false
   },
